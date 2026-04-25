@@ -74,7 +74,8 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ steps.ai4c-token.outputs.token }}
           track_progress: ${{ github.event_name == 'pull_request' }}
-          allowed_bots: "claude,github-actions"
+          # PRs opened by the ai4c GitHub App should still be reviewable.
+          allowed_bots: "claude,github-actions,ai4c-agent"
           claude_args: |
             --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr review:*),Bash(gh api:*),Bash(obo-grep.pl:*),Bash(aurelian:*),Bash(cat:*),Bash(sed:*),Bash(head:*),Bash(tail:*),Bash(wc:*),Bash(find:*),Bash(ls:*),Bash(rg:*)"
 
