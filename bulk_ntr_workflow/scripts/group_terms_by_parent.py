@@ -1,13 +1,17 @@
 """
 Stage 2: Group ROBOT template rows by parent term for parallel subagent processing.
 
-Input:  bulk_ntr_workflow/outputs/template_initial.tsv
-Output: bulk_ntr_workflow/outputs/definitions/input/{group_name}.json  (one per parent group)
+Reads BOTH templates produced by Stage 1:
+  bulk_ntr_workflow/outputs/template_initial.tsv         — leaf terms (SC directives)
+  bulk_ntr_workflow/outputs/template_groups_initial.tsv  — group terms (EC directives)
 
-Each JSON file contains the terms for one parent group along with:
-- parent UBERON ID and label
-- derived Wikipedia URL(s) to try
-- list of term objects for definition writing
+Each per-term JSON entry includes a `term_type` field ("leaf" or "group") so the agent
+can branch its behaviour (Step 5 of the agent spec). Group terms have no parent ID
+encoded in the template (the agent will determine genus + part_of differentiator), so
+they are all collected into a single group keyed by `term_type=group` rather than by
+parent UBERON ID.
+
+Output: bulk_ntr_workflow/outputs/definitions/input/{group_name}.json
 
 Usage:
   uv run scripts/group_terms_by_parent.py
@@ -16,15 +20,15 @@ Usage:
 import csv
 import json
 import re
-import unicodedata
 from pathlib import Path
 
-ROOT       = Path(__file__).resolve().parent.parent
-INPUT_TSV  = ROOT / "outputs" / "template_initial.tsv"
-OUTPUT_DIR = ROOT / "outputs" / "definitions" / "input"
+ROOT             = Path(__file__).resolve().parent.parent
+INPUT_LEAF_TSV   = ROOT / "outputs" / "template_initial.tsv"
+INPUT_GROUPS_TSV = ROOT / "outputs" / "template_groups_initial.tsv"
+OUTPUT_DIR       = ROOT / "outputs" / "definitions" / "input"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# Columns by index in the template TSV (after the 2 header rows)
+# Leaf template column indices (after the 2 header rows)
 # ID | LABEL | Definition | def_xref | is_a | part_of | ...
 COL_ID       = 0
 COL_LABEL    = 1
@@ -33,54 +37,27 @@ COL_XREF     = 3
 COL_IS_A     = 4
 COL_PART_OF  = 5
 
-
-def label_to_wikipedia_slug(label: str) -> str | None:
-    """Convert a term label to a best-guess Wikipedia article slug."""
-    # Normalise unicode, title-case, replace spaces with underscores
-    label = unicodedata.normalize("NFC", label.strip())
-    slug = label.replace(" ", "_")
-    # Capitalise first character
-    return slug[0].upper() + slug[1:] if slug else None
-
-
-def derive_wikipedia_urls(parent_label: str) -> list[str]:
-    """Return a list of Wikipedia URLs to try for this parent."""
-    if not parent_label or parent_label in ("INFER", "NEEDS_MAPPING", "UNRESOLVABLE", "UNKNOWN"):
-        return []
-    slug = label_to_wikipedia_slug(parent_label)
-    if not slug:
-        return []
-    return [f"https://en.wikipedia.org/wiki/{slug}"]
+# Groups template column indices — same first 4, then genus + location
+COL_GENUS    = 4
+COL_LOCATION = 5
 
 
 def extract_parent_info(row: list[str]) -> tuple[str, str]:
-    """
-    Return (parent_id, parent_label) from an is_a or part_of cell.
-
-    Cells may contain:
-      - UBERON:xxxxxxx           (direct ID)
-      - INFER:UBERON:xxxxxxx     (embedded parent, rel type to be resolved by subagent)
-      - NEEDS_MAPPING:FMA:nnnnn  (FMA parent, needs OLS4 mapping)
-      - UNRESOLVABLE / UNKNOWN
-    """
+    """Return (parent_id, parent_label) from a leaf template's is_a/part_of cells."""
     is_a    = row[COL_IS_A].strip()
     part_of = row[COL_PART_OF].strip()
 
     for val in (is_a, part_of):
-        # Direct UBERON ID
         m = re.match(r'^(UBERON:\d{7})$', val)
         if m:
             return m.group(1), ""
-        # Embedded: INFER:UBERON:xxxxxxx
         m = re.match(r'^INFER:(UBERON:\d{7})$', val)
         if m:
             return m.group(1), ""
-        # FMA mapping needed
         m = re.match(r'^(NEEDS_MAPPING:FMA:\d+)$', val)
         if m:
             return m.group(1), ""
 
-    # Fall back to whichever has content (UNRESOLVABLE, UNKNOWN, etc.)
     val = is_a if is_a and is_a not in ("", "[PENDING]") else part_of
     return val, ""
 
@@ -95,21 +72,16 @@ def make_group_name(parent_id: str, parent_label: str) -> str:
 
 
 def process() -> None:
-    if not INPUT_TSV.exists():
-        raise FileNotFoundError(f"Input not found: {INPUT_TSV}\nRun generate_template.py first.")
+    if not INPUT_LEAF_TSV.exists():
+        raise FileNotFoundError(f"Input not found: {INPUT_LEAF_TSV}\nRun generate_template.py first.")
 
-    with open(INPUT_TSV, newline="", encoding="utf-8") as f:
+    groups: dict[str, dict] = {}
+
+    # --- Leaf template: group by parent ---
+    with open(INPUT_LEAF_TSV, newline="", encoding="utf-8") as f:
         reader = csv.reader(f, delimiter="\t")
-        header_row    = next(reader)
-        directive_row = next(reader)
-
-        # Build column name → index map from header
-        col_map = {h.strip(): i for i, h in enumerate(header_row)}
-
-        # We need the def_xref to retrieve parent label hint later
-        # For now: extract parent info from is_a/part_of cells
-        groups: dict[str, dict] = {}
-
+        next(reader)  # header row
+        next(reader)  # directive row
         for row in reader:
             if not row or not row[COL_LABEL].strip():
                 continue
@@ -117,48 +89,80 @@ def process() -> None:
             ntr_id = row[COL_ID].strip()
 
             parent_id, _ = extract_parent_info(row)
-
-            group_key = parent_id  # group by parent ID
+            group_key = parent_id
 
             if group_key not in groups:
                 groups[group_key] = {
-                    "parent_id": parent_id,
-                    "parent_label": "",  # enriched below via xref lookup
-                    "terms": [],
+                    "parent_id":   parent_id,
+                    "parent_label": "",
+                    "terms":       [],
                 }
 
             groups[group_key]["terms"].append({
-                "ntr_id":      ntr_id,
-                "label":       label,
-                "is_a":        row[COL_IS_A].strip(),
-                "part_of":     row[COL_PART_OF].strip(),
-                "def_xref":    row[COL_XREF].strip() if len(row) > COL_XREF else "",
+                "ntr_id":     ntr_id,
+                "label":      label,
+                "term_type":  "leaf",
+                "is_a":       row[COL_IS_A].strip(),
+                "part_of":    row[COL_PART_OF].strip(),
+                "def_xref":   row[COL_XREF].strip() if len(row) > COL_XREF else "",
             })
 
-    # We don't have parent labels in the template (they weren't stored).
-    # Re-read the original source via the XREF column to recover the ASCTB-TEMP IRI,
-    # but parent labels are not recoverable from the template alone.
-    # Instead: derive a readable group name from the parent UBERON ID and note
-    # that the subagent should look up the label via OLS4.
+    # --- Groups template: all into one bucket; agent determines genus + location per term ---
+    if INPUT_GROUPS_TSV.exists():
+        with open(INPUT_GROUPS_TSV, newline="", encoding="utf-8") as f:
+            reader = csv.reader(f, delimiter="\t")
+            next(reader)  # header row
+            next(reader)  # directive row
+            grouping_terms = []
+            for row in reader:
+                if not row or not row[COL_LABEL].strip():
+                    continue
+                grouping_terms.append({
+                    "ntr_id":     row[COL_ID].strip(),
+                    "label":      row[COL_LABEL].strip(),
+                    "term_type":  "group",
+                    "genus":      row[COL_GENUS].strip() if len(row) > COL_GENUS else "",
+                    "location":   row[COL_LOCATION].strip() if len(row) > COL_LOCATION else "",
+                    "def_xref":   row[COL_XREF].strip() if len(row) > COL_XREF else "",
+                })
+            if grouping_terms:
+                groups["__grouping_terms__"] = {
+                    "parent_id":    "GROUPING_TERMS",
+                    "parent_label": "(grouping terms — agent determines genus + part_of differentiator per term)",
+                    "terms":        grouping_terms,
+                }
 
     written = 0
     for group_key, data in sorted(groups.items()):
         parent_id = data["parent_id"]
-        group_name = make_group_name(parent_id, data.get("parent_label", ""))
+        # Special handling for the grouping bucket
+        if group_key == "__grouping_terms__":
+            group_name = "grouping_terms"
+        else:
+            group_name = make_group_name(parent_id, data.get("parent_label", ""))
+
+        # Group-level summary: leaf vs group counts (always one or the other in this iteration)
+        leaf_n  = sum(1 for t in data["terms"] if t.get("term_type") == "leaf")
+        group_n = sum(1 for t in data["terms"] if t.get("term_type") == "group")
 
         out = {
-            "group_name":   group_name,
-            "parent_id":    parent_id,
-            "parent_label": data.get("parent_label", ""),
-            "note": "parent_label is best-effort; subagent should resolve via OLS4.",
-            "terms": data["terms"],
+            "group_name":    group_name,
+            "parent_id":     parent_id,
+            "parent_label":  data.get("parent_label", ""),
+            "term_counts":   {"leaf": leaf_n, "group": group_n},
+            "note": "parent_label is best-effort; subagent should resolve via OLS4. "
+                    "For term_type='group' terms: use obo-grep on uberon-edit.obo to find "
+                    "similar UBERON groupings, identify the genus + part_of pattern, and "
+                    "fill genus + location. If pattern doesn't fit, route to manual_curation.",
+            "terms":         data["terms"],
         }
 
         out_path = OUTPUT_DIR / f"{group_name}.json"
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2)
 
-        print(f"  {group_name:45s}  {len(data['terms']):3d} terms")
+        marker = "[GROUP]" if group_n else "[leaf] "
+        print(f"  {marker} {group_name:45s}  {len(data['terms']):3d} terms")
         written += 1
 
     total = sum(len(d["terms"]) for d in groups.values())
