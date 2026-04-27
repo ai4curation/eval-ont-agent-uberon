@@ -6,18 +6,25 @@
   "note": "parent_label and wikipedia_urls are best-effort; subagent should resolve parent label via OLS4 and refine Wikipedia URL.",
   "terms": [
     {
-      "ntr_id": "http://purl.obolibrary.org/obo/UBERON_9900016",
-      "label": "hypothenar hand muscle",
+      "ntr_id": "http://purl.obolibrary.org/obo/UBERON_9900105",
+      "label": "early antral follicle",
       "is_a": "INFER:UBERON:0001677",
       "part_of": "INFER:UBERON:0001677",
-      "def_xref": "https://fipat.library.dal.ca/ta2/|ISBN:9780323393225|https://purl.org/ccf/ASCTB-TEMP_hypothenar-hand-muscle"
+      "def_xref": "https://doi.org/10.1093/oxfordjournals.humrep.a136365|https://purl.org/ccf/ASCTB-TEMP_early-antral-follicle"
     },
     {
-      "ntr_id": "http://purl.obolibrary.org/obo/UBERON_9900029",
-      "label": "levator costarum muscle",
+      "ntr_id": "http://purl.obolibrary.org/obo/UBERON_9900109",
+      "label": "pre-selection antral follicle",
       "is_a": "INFER:UBERON:0001677",
       "part_of": "INFER:UBERON:0001677",
-      "def_xref": "https://fipat.library.dal.ca/ta2/|ISBN:9780323393225|https://purl.org/ccf/ASCTB-TEMP_levator-costarum-muscle"
+      "def_xref": "https://doi.org/10.1093/oxfordjournals.humrep.a136365|https://purl.org/ccf/ASCTB-TEMP_pre-selection-antral-follicle"
+    },
+    {
+      "ntr_id": "http://purl.obolibrary.org/obo/UBERON_9900110",
+      "label": "selection antral follicle",
+      "is_a": "INFER:UBERON:0001677",
+      "part_of": "INFER:UBERON:0001677",
+      "def_xref": "https://doi.org/10.1093/oxfordjournals.humrep.a136365|https://purl.org/ccf/ASCTB-TEMP_selection-antral-follicle"
     }
   ]
 }

@@ -120,7 +120,7 @@ def read_xlsx(path: Path, table_filter: str | None) -> list[dict]:
 
 def read_csv(path: Path, table_filter: str | None) -> list[dict]:
     records = []
-    with open(path, newline="", encoding="utf-8") as f:
+    with open(path, newline="", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         for row in reader:
             table = row.get("tables", "").strip()
