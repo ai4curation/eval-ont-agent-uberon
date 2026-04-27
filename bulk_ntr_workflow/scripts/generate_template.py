@@ -41,14 +41,14 @@ TEMPLATE_HEADERS = [
     "ID", "LABEL", "Definition", "def_xref",
     "is_a", "part_of",
     "In_subset", "Date", "Contributor", "Present_in_taxon",
-    "Wikipedia_image",
+    "Wikipedia_image", "xref",
 ]
 TEMPLATE_DIRECTIVES = [
     "ID", "LABEL", "A IAO:0000115", ">A oboInOwl:hasDbXref SPLIT=|",
     "SC %", "SC BFO:0000050 some %",
     "AI oboInOwl:inSubset", "AT dcterms:date^^xsd:dateTime",
     "AI dcterms:contributor", "AI RO:0002175",
-    "A foaf:depiction",
+    "A foaf:depiction", "A oboInOwl:hasDbXref SPLIT=|",
 ]
 
 # Columns for input.tsv (mirrors the raw source columns we care about)
@@ -285,6 +285,7 @@ def process(input_path: Path, table_filter: str | None, start_id: int, name: str
             CONTRIBUTOR_IRI,
             TAXON_IRI,
             "",  # Wikipedia_image — filled by subagent
+            "",  # xref — filled by subagent (Wikipedia page + FMA)
         ])
 
     # Write working copy of template

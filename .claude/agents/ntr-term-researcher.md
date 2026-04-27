@@ -89,6 +89,15 @@ Apply in order, stop when you have enough for a good definition:
 Also: while on the parent Wikipedia page, look for an image URL (infobox or anatomy diagram)
 that illustrates the parent structure. Use this as the `wikipedia_image` for all terms in the group.
 
+Record the Wikipedia **article page URL** (not the image URL) for each term where you found a
+dedicated article (e.g. `https://en.wikipedia.org/wiki/Articularis_genus_muscle`). This goes in
+`xrefs` as `Wikipedia:Article_Title` (using the article title exactly as it appears in the URL,
+with underscores). If the term shares a parent article rather than having its own, omit the Wikipedia xref.
+
+Also record any **FMA ID** for the term itself (not the parent) if OLS4 returns one as a cross-
+reference on a confirmed or candidate match: format `FMA:NNNNN`. Combine Wikipedia and FMA into a
+pipe-separated string: `"Wikipedia:Article_Title|FMA:NNNNN"`.
+
 ## Step 4: Write Definitions
 
 For each term without a confirmed existing UBERON match:
@@ -132,6 +141,9 @@ Save to: `bulk_ntr_workflow/outputs/definitions/{group_name}.json`
   },
   "wikipedia_images": {
     "term label": "https://upload.wikimedia.org/wikipedia/commons/..."
+  },
+  "xrefs": {
+    "term label": "Wikipedia:Term_Name|FMA:NNNNN"
   },
   "resolved_relationships": {
     "term label": "is_a"

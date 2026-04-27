@@ -42,6 +42,7 @@ COL_XREF    = 3
 COL_IS_A    = 4
 COL_PART_OF = 5
 COL_IMAGE   = 10  # Wikipedia_image
+COL_TERMREF = 11  # xref (direct oboInOwl:hasDbXref on term)
 
 
 def _normalise_matches(raw: list) -> list:
@@ -59,12 +60,13 @@ def _normalise_matches(raw: list) -> list:
     return out
 
 
-def load_subagent_outputs() -> tuple[dict, dict, dict, dict, list, list]:
+def load_subagent_outputs() -> tuple[dict, dict, dict, dict, dict, list, list]:
     """Load and merge all subagent JSON outputs."""
     definitions      = {}
     images           = {}
     relationships    = {}
     resolved_parents = {}  # label → UBERON ID (resolved from FMA or ASCTB-TEMP)
+    xrefs            = {}  # label → pipe-sep xref string (Wikipedia URL + FMA ID)
     confirmed        = []
     possible         = []
 
@@ -81,6 +83,7 @@ def load_subagent_outputs() -> tuple[dict, dict, dict, dict, list, list]:
         images.update(data.get("wikipedia_images", {}))
         relationships.update(data.get("resolved_relationships", {}))
         resolved_parents.update(data.get("resolved_parents", {}))
+        xrefs.update(data.get("xrefs", {}))
         confirmed.extend(_normalise_matches(data.get("confirmed_matches", [])))
         possible.extend(_normalise_matches(data.get("possible_matches", [])))
         # Also accept {label: {match_type, matched_id, ...}} dict form
@@ -97,7 +100,7 @@ def load_subagent_outputs() -> tuple[dict, dict, dict, dict, list, list]:
             elif "possible" in mt:
                 possible.append(entry)
 
-    return definitions, images, relationships, resolved_parents, confirmed, possible
+    return definitions, images, relationships, resolved_parents, xrefs, confirmed, possible
 
 
 def extract_parent_id(cell_val: str) -> str:
@@ -127,17 +130,18 @@ def process(name: str) -> None:
             f"Template not found: {final_tsv}\nRun generate_template.py --name {name} first."
         )
 
-    definitions, images, relationships, resolved_parents, confirmed, possible = \
+    definitions, images, relationships, resolved_parents, xrefs, confirmed, possible = \
         load_subagent_outputs()
     print(f"Loaded: {len(definitions)} definitions, {len(images)} images, "
           f"{len(relationships)} resolved relationships, "
-          f"{len(resolved_parents)} resolved parents, "
+          f"{len(resolved_parents)} resolved parents, {len(xrefs)} xrefs, "
           f"{len(confirmed)} confirmed matches, {len(possible)} possible matches")
 
     rows = []
     updated_defs    = 0
     updated_images  = 0
     updated_rels    = 0
+    updated_xrefs   = 0
     still_pending   = 0
     still_infer     = 0
     excluded_labels: set[str] = {m["label"] for m in confirmed}
@@ -174,6 +178,13 @@ def process(name: str) -> None:
             if label in images and images[label]:
                 row[COL_IMAGE] = images[label].strip()
                 updated_images += 1
+
+            # Merge direct xrefs (Wikipedia URL + FMA ID)
+            while len(row) <= COL_TERMREF:
+                row.append("")
+            if label in xrefs and xrefs[label]:
+                row[COL_TERMREF] = xrefs[label].strip()
+                updated_xrefs += 1
 
             # Merge resolved relationships + resolved parents
             is_a_val    = row[COL_IS_A].strip()
@@ -218,6 +229,7 @@ def process(name: str) -> None:
     print(f"\nUpdated template → {final_tsv}  ({data_rows} data rows)")
     print(f"  Definitions updated:       {updated_defs}")
     print(f"  Images added:              {updated_images}")
+    print(f"  Xrefs added:               {updated_xrefs}")
     print(f"  Relationships resolved:    {updated_rels}")
     print(f"  Still [PENDING] defs:      {still_pending}")
     print(f"  Still INFER relationships: {still_infer}")

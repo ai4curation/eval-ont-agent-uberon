@@ -149,6 +149,7 @@ After QC:
 | Contributor | AI dcterms:contributor | ORCID IRI |
 | Present_in_taxon | AI RO:0002175 | NCBITaxon IRI |
 | Wikipedia_image | A foaf:depiction | Wikipedia image URL |
+| xref | A oboInOwl:hasDbXref SPLIT=\| | Direct term xrefs: Wikipedia article + FMA ID (pipe-separated) |
 
 ## Tools Available
 
