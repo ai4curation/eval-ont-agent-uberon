@@ -1,16 +1,23 @@
 """
-Stage 1: Generate initial ROBOT template TSV from HRA ASCTB unmapped terms.
+Stage 1: Generate initial ROBOT template TSVs from HRA ASCTB unmapped terms.
+
+Each input row is pre-classified as a leaf or group term (linguistic rules) and routed
+to the appropriate template:
+  - Leaf terms → standard template with SC (asserted is_a/part_of)
+  - Group terms → groups template with EC (equivalent class: genus + part_of some Y)
 
 Input:  An xlsx file (default: hra_unmapped-asct-term-list-with-refs.xlsx at repo root)
         OR a pre-exported CSV with the same columns as the 'as-temp terms' sheet.
         Optionally filter to a specific ASCTB table (e.g. 'muscular-system').
 
 Outputs  (REPO_ROOT = two levels up from this script):
-  bulk_ntr_workflow/outputs/template_initial.tsv          — working ROBOT template (intermediate)
-  src/templates/<name>.template.tsv                  — copy of initial template (final home)
-  src/templates/<name>-reports/input.tsv             — filtered input rows
-  src/templates/<name>-reports/errors.tsv            — input problems as TSV
-  src/templates/<name>-reports/candidates.tsv        — pre-mapped / existing UBERON terms
+  bulk_ntr_workflow/outputs/template_initial.tsv         — leaf working template
+  bulk_ntr_workflow/outputs/template_groups_initial.tsv  — groups working template
+  src/templates/<name>.template.tsv                      — leaf final template
+  src/templates/<name>-groups.template.tsv               — groups final template
+  src/templates/<name>-reports/input.tsv                 — filtered input rows + term_type
+  src/templates/<name>-reports/errors.tsv                — input problems
+  src/templates/<name>-reports/candidates.tsv            — pre-mapped existing terms
 
 Usage:
   cd bulk_ntr_workflow
@@ -32,11 +39,12 @@ from pathlib import Path
 NTR_ROOT  = Path(__file__).resolve().parent.parent
 REPO_ROOT = NTR_ROOT.parent
 
-WORK_DIR   = NTR_ROOT / "outputs"
+WORK_DIR        = NTR_ROOT / "outputs"
 WORK_DIR.mkdir(parents=True, exist_ok=True)
-WORK_TSV   = WORK_DIR / "template_initial.tsv"
+WORK_TSV        = WORK_DIR / "template_initial.tsv"
+WORK_GROUPS_TSV = WORK_DIR / "template_groups_initial.tsv"
 
-# ROBOT template column headers and directives (row 1 + row 2)
+# ROBOT template column headers and directives — LEAF template (asserted SC)
 TEMPLATE_HEADERS = [
     "ID", "LABEL", "Definition", "def_xref",
     "is_a", "part_of",
@@ -51,8 +59,26 @@ TEMPLATE_DIRECTIVES = [
     "A foaf:depiction", "A oboInOwl:hasDbXref SPLIT=|",
 ]
 
-# Columns for input.tsv (mirrors the raw source columns we care about)
-INPUT_HEADERS = ["table", "as_iri", "label", "uberon_id", "parent_id", "parent_label", "references"]
+# ROBOT template — GROUPS template (equivalent class: genus + part_of some Y)
+GROUPS_TEMPLATE_HEADERS = [
+    "ID", "LABEL", "Definition", "def_xref",
+    "genus", "location",
+    "In_subset", "Date", "Contributor", "Present_in_taxon",
+    "Wikipedia_image", "xref",
+]
+GROUPS_TEMPLATE_DIRECTIVES = [
+    "ID", "LABEL", "A IAO:0000115", ">A oboInOwl:hasDbXref SPLIT=|",
+    "EC %", "EC BFO:0000050 some %",
+    "AI oboInOwl:inSubset", "AT dcterms:date^^xsd:dateTime",
+    "AI dcterms:contributor", "AI RO:0002175",
+    "A foaf:depiction", "A oboInOwl:hasDbXref SPLIT=|",
+]
+
+# Columns for input.tsv (mirrors the raw source columns + term_type pre-classification)
+INPUT_HEADERS = [
+    "table", "as_iri", "label", "uberon_id",
+    "parent_id", "parent_label", "references", "term_type",
+]
 
 # Columns for errors.tsv
 ERROR_HEADERS = ["label", "as_iri", "issue_type", "parent_id", "parent_label", "detail"]
@@ -70,6 +96,48 @@ DEFAULT_START_ID = 9900001
 
 UBERON_RE  = re.compile(r'^UBERON:\d{7}$')
 FMA_IRI_RE = re.compile(r'fma/fma(\d+)', re.IGNORECASE)
+
+# Linguistic patterns for grouping terms (collective classes, not specific named entities).
+# When matched, the term is routed to the groups template (EquivalentClass form).
+# Default if none match: "leaf" (asserted SC subclass).
+GROUP_PATTERNS = [
+    re.compile(r'\bmuscle of (?!the )', re.IGNORECASE),
+    re.compile(r'\b(pelvic floor|thoracic wall|abdominal wall|chest|chest wall) muscle\b', re.IGNORECASE),
+    re.compile(r'\b(dorsum|sole) of (foot|hand) muscle\b', re.IGNORECASE),
+    re.compile(r'\b(circular|longitudinal) pharyngeal muscle\b', re.IGNORECASE),
+    re.compile(r'\b(intrinsic|extrinsic) (eye|ear|tongue|hand|foot|laryngeal|lingual) muscle\b', re.IGNORECASE),
+    re.compile(r'\b(hypothenar|thenar) hand muscle\b', re.IGNORECASE),
+    re.compile(r'\b(palmar|plantar) interosseous muscle\b', re.IGNORECASE),
+    re.compile(r'\b(superficial|intermediate|deep) back muscle\b', re.IGNORECASE),
+    re.compile(r'\b(anterior|posterior|lateral|medial) vertebral muscle\b', re.IGNORECASE),
+    re.compile(r'\b(anterior|posterior|lateral|medial) compartment( of \w+)? muscle\b', re.IGNORECASE),
+    re.compile(r'\b(spinotransversales|segmental back|external ear|middle ear|cranial) muscle\b', re.IGNORECASE),
+    re.compile(r'\b(posterior|anterior|lateral|medial) abdominal wall muscle\b', re.IGNORECASE),
+    re.compile(r'\bmuscle of (facial expression|mastication)\b', re.IGNORECASE),
+]
+
+# Subdivision patterns — head/belly/part/portion/crus/etc of a named muscle → leaf
+LEAF_PART_PATTERNS = [
+    re.compile(r'\b(head|belly|part|portion|crus|fascicle|layer|zone|lamina) of\b', re.IGNORECASE),
+]
+
+
+def classify_term_type(label: str) -> str:
+    """Classify a term label as 'group' or 'leaf' using linguistic rules.
+
+    Default: 'leaf'. A term matching any LEAF_PART_PATTERN (e.g. 'X head of Y muscle')
+    is always 'leaf', even if a GROUP_PATTERN would otherwise match. Specific
+    subdivisions of a named structure trump grouping cues.
+    """
+    if not label:
+        return "leaf"
+    for pat in LEAF_PART_PATTERNS:
+        if pat.search(label):
+            return "leaf"
+    for pat in GROUP_PATTERNS:
+        if pat.search(label):
+            return "group"
+    return "leaf"
 
 
 # ---------------------------------------------------------------------------
@@ -221,15 +289,17 @@ def process(input_path: Path, table_filter: str | None, start_id: int, name: str
         records = records[:limit]
 
     # Output paths
-    templates_dir  = REPO_ROOT / "src" / "templates"
-    reports_dir    = templates_dir / f"{name}-reports"
-    final_tsv      = templates_dir / f"{name}.template.tsv"
-    input_tsv      = reports_dir / "input.tsv"
-    errors_tsv     = reports_dir / "errors.tsv"
-    candidates_tsv = reports_dir / "candidates.tsv"
+    templates_dir    = REPO_ROOT / "src" / "templates"
+    reports_dir      = templates_dir / f"{name}-reports"
+    final_tsv        = templates_dir / f"{name}.template.tsv"
+    final_groups_tsv = templates_dir / f"{name}-groups.template.tsv"
+    input_tsv        = reports_dir / "input.tsv"
+    errors_tsv       = reports_dir / "errors.tsv"
+    candidates_tsv   = reports_dir / "candidates.tsv"
     reports_dir.mkdir(parents=True, exist_ok=True)
 
-    template_rows = []
+    leaf_rows     = []
+    group_rows    = []
     error_rows    = []
     candidate_rows = []
     input_rows    = []
@@ -243,8 +313,11 @@ def process(input_path: Path, table_filter: str | None, start_id: int, name: str
         parent_lbl = rec["parent_label"]
         refs       = rec["references"]
 
-        # Save to input.tsv regardless of outcome
-        input_rows.append([rec["table"], iri, label, uberon_id, parent_id, parent_lbl, refs])
+        term_type = classify_term_type(label) if label else "leaf"
+
+        # Save to input.tsv regardless of outcome (now includes term_type)
+        input_rows.append([rec["table"], iri, label, uberon_id,
+                           parent_id, parent_lbl, refs, term_type])
 
         if not label:
             error_rows.append(["", iri, "missing_label", "", "", ""])
@@ -293,44 +366,65 @@ def process(input_path: Path, table_filter: str | None, start_id: int, name: str
         # Pre-populate xref with FMA ID if the term's own IRI is an FMA IRI
         own_fma = fma_id_from_iri(iri) if FMA_IRI_RE.search(iri) else ""
 
-        template_rows.append([
-            f"http://purl.obolibrary.org/obo/UBERON_{counter}",
-            label,
-            "[PENDING]",
-            def_xref,
-            is_a_val,
-            part_of_val,
-            SUBSET_IRI,
-            CREATION_DATE,
-            contributor_iri,
-            TAXON_IRI,
-            "",       # Wikipedia_image — filled by subagent
-            own_fma,  # xref — FMA from source IRI; subagent adds Wikipedia + additional FMA
-        ])
+        if term_type == "group":
+            # Groups template: genus + location columns are populated by the subagent
+            group_rows.append([
+                f"http://purl.obolibrary.org/obo/UBERON_{counter}",
+                label,
+                "[PENDING]",
+                def_xref,
+                "",       # genus — filled by subagent
+                "",       # location — filled by subagent
+                SUBSET_IRI,
+                CREATION_DATE,
+                contributor_iri,
+                TAXON_IRI,
+                "",       # Wikipedia_image — filled by subagent
+                own_fma,  # xref — FMA from source IRI; subagent appends
+            ])
+        else:
+            leaf_rows.append([
+                f"http://purl.obolibrary.org/obo/UBERON_{counter}",
+                label,
+                "[PENDING]",
+                def_xref,
+                is_a_val,
+                part_of_val,
+                SUBSET_IRI,
+                CREATION_DATE,
+                contributor_iri,
+                TAXON_IRI,
+                "",       # Wikipedia_image — filled by subagent
+                own_fma,
+            ])
         counter += 1
 
-    # Write working copy of template
-    with open(WORK_TSV, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f, delimiter="\t")
-        writer.writerow(TEMPLATE_HEADERS)
-        writer.writerow(TEMPLATE_DIRECTIVES)
-        writer.writerows(template_rows)
+    # Write LEAF working + final templates
+    for path in (WORK_TSV, final_tsv):
+        with open(path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f, delimiter="\t")
+            writer.writerow(TEMPLATE_HEADERS)
+            writer.writerow(TEMPLATE_DIRECTIVES)
+            writer.writerows(leaf_rows)
 
-    # Write final template to src/templates/ (same content; Stage 4 will update it in-place)
-    with open(final_tsv, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f, delimiter="\t")
-        writer.writerow(TEMPLATE_HEADERS)
-        writer.writerow(TEMPLATE_DIRECTIVES)
-        writer.writerows(template_rows)
+    # Write GROUPS working + final templates
+    for path in (WORK_GROUPS_TSV, final_groups_tsv):
+        with open(path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f, delimiter="\t")
+            writer.writerow(GROUPS_TEMPLATE_HEADERS)
+            writer.writerow(GROUPS_TEMPLATE_DIRECTIVES)
+            writer.writerows(group_rows)
 
     # Write reports
     write_tsv(input_tsv, INPUT_HEADERS, input_rows)
     write_tsv(errors_tsv, ERROR_HEADERS, error_rows)
     write_tsv(candidates_tsv, CANDIDATE_HEADERS, candidate_rows)
 
-    print(f"Template (working) → {WORK_TSV}")
-    print(f"Template (final)   → {final_tsv}")
-    print(f"Reports            → {reports_dir}/")
+    print(f"Leaf template (working) → {WORK_TSV}")
+    print(f"Leaf template (final)   → {final_tsv}  ({len(leaf_rows)} rows)")
+    print(f"Groups template (working) → {WORK_GROUPS_TSV}")
+    print(f"Groups template (final)   → {final_groups_tsv}  ({len(group_rows)} rows)")
+    print(f"Reports                  → {reports_dir}/")
     print(f"  input.tsv        {len(input_rows)} rows")
     print(f"  errors.tsv       {len(error_rows)} rows")
     print(f"  candidates.tsv   {len(candidate_rows)} rows")
@@ -338,7 +432,7 @@ def process(input_path: Path, table_filter: str | None, start_id: int, name: str
     uberon_p = sum(1 for r in records if classify_parent(r["parent_id"]) == "uberon")
     fma_p    = sum(1 for r in records if classify_parent(r["parent_id"]) == "fma")
     asctb_p  = sum(1 for r in records if classify_parent(r["parent_id"]) == "asctb_temp")
-    print(f"\nTemplate rows: {len(template_rows)} | "
+    print(f"\nTemplate rows: leaf={len(leaf_rows)} group={len(group_rows)} | "
           f"Parents: UBERON={uberon_p} FMA={fma_p} ASCTB-TEMP={asctb_p}")
     if asctb_p:
         print(f"  ⚠ {asctb_p} terms have ASCTB-TEMP parents — "
