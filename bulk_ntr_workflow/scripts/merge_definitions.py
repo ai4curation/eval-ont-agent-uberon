@@ -44,6 +44,21 @@ COL_PART_OF = 5
 COL_IMAGE   = 10  # Wikipedia_image
 
 
+def _normalise_matches(raw: list) -> list:
+    """Normalise various field-name conventions agents may use into {label, uberon_id, ...}."""
+    out = []
+    for m in raw:
+        label = m.get("label") or m.get("ntr_label") or m.get("term_label", "")
+        uid   = m.get("uberon_id") or m.get("matched_id") or ""
+        out.append({
+            "label":      label,
+            "uberon_id":  uid,
+            "confidence": m.get("confidence", ""),
+            "note":       m.get("note", ""),
+        })
+    return out
+
+
 def load_subagent_outputs() -> tuple[dict, dict, dict, dict, list, list]:
     """Load and merge all subagent JSON outputs."""
     definitions      = {}
@@ -66,8 +81,21 @@ def load_subagent_outputs() -> tuple[dict, dict, dict, dict, list, list]:
         images.update(data.get("wikipedia_images", {}))
         relationships.update(data.get("resolved_relationships", {}))
         resolved_parents.update(data.get("resolved_parents", {}))
-        confirmed.extend(data.get("confirmed_matches", []))
-        possible.extend(data.get("possible_matches", []))
+        confirmed.extend(_normalise_matches(data.get("confirmed_matches", [])))
+        possible.extend(_normalise_matches(data.get("possible_matches", [])))
+        # Also accept {label: {match_type, matched_id, ...}} dict form
+        for lbl, info in data.get("existing_term_match", {}).items():
+            mt = info.get("match_type", "")
+            entry = {
+                "label":      lbl,
+                "uberon_id":  info.get("matched_id") or info.get("uberon_id", ""),
+                "confidence": info.get("confidence", "high" if "confirmed" in mt else "medium"),
+                "note":       info.get("note", ""),
+            }
+            if "confirmed" in mt:
+                confirmed.append(entry)
+            elif "possible" in mt:
+                possible.append(entry)
 
     return definitions, images, relationships, resolved_parents, confirmed, possible
 

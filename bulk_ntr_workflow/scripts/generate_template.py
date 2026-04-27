@@ -185,7 +185,8 @@ def write_tsv(path: Path, headers: list[str], rows: list[list]) -> None:
 # Main
 # ---------------------------------------------------------------------------
 
-def process(input_path: Path, table_filter: str | None, start_id: int, name: str) -> None:
+def process(input_path: Path, table_filter: str | None, start_id: int, name: str,
+            limit: int | None = None) -> None:
     suffix = input_path.suffix.lower()
     if suffix in (".xlsx", ".xlsm"):
         records = read_xlsx(input_path, table_filter)
@@ -196,6 +197,9 @@ def process(input_path: Path, table_filter: str | None, start_id: int, name: str
 
     if not records:
         sys.exit("No records found (check --table filter)")
+
+    if limit is not None:
+        records = records[:limit]
 
     # Output paths
     templates_dir  = REPO_ROOT / "src" / "templates"
@@ -342,8 +346,12 @@ def main():
         "--start-id", type=int, default=DEFAULT_START_ID,
         help=f"Starting UBERON:99xxxxx counter (default: {DEFAULT_START_ID})"
     )
+    parser.add_argument(
+        "--limit", type=int, default=None,
+        help="Process only the first N terms (for testing)"
+    )
     args = parser.parse_args()
-    process(Path(args.input), args.table, args.start_id, args.name)
+    process(Path(args.input), args.table, args.start_id, args.name, args.limit)
 
 
 if __name__ == "__main__":
