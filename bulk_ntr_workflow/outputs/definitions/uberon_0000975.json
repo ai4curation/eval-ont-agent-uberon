@@ -1,0 +1,25 @@
+{
+  "confirmed_matches": [
+    {
+      "label": "costal part of respiratory diaphragm muscle",
+      "uberon_id": "UBERON:0035831",
+      "confidence": "high",
+      "uberon_definition": "The domain of the diaphragm that is a thin domed sheet of muscle composed of a radial array of myofibers extending laterally from the ribs and medially to a central tendon.",
+      "wikipedia_summary": "The costal part of the diaphragm originates from the inner surfaces of the lower six ribs and their costal cartilages and inserts into the central tendon of the diaphragm. Its radial myofibers converge towards the central tendon and are responsible for the primary movement of the diaphragm during respiration.",
+      "uberon_label": "costal diaphragm",
+      "matched_via_synonym": "costal part of diaphragm (EXACT, FMA:58277)",
+      "fma_xref": "FMA:58277",
+      "note": "The requested label 'costal part of respiratory diaphragm muscle' is the TA2-style fuller name for the same structure. UBERON's term 'costal diaphragm' (UBERON:0035831) carries 'costal part of diaphragm' as an EXACT synonym with FMA:58277, and the diaphragm itself (UBERON:0001103) carries 'diaphragm muscle' as an EXACT synonym. Definitions describe identical structure (radial myofibers from ribs to central tendon)."
+    }
+  ],
+  "resolved_parents": {
+    "costal part of respiratory diaphragm muscle": "UBERON:0001103"
+  },
+  "unresolvable": [
+    {
+      "label": "costal part of respiratory diaphragm muscle",
+      "reason": "Source-supplied parent UBERON:0000975 is 'sternum' (an endochondral skeletal element, is_a 'endochondral element'), which is the wrong anatomical domain for a part of the diaphragm muscle. The correct parent is UBERON:0001103 'diaphragm' (a skeletal muscle organ, with synonym 'diaphragm muscle').",
+      "suggestion": "Term already exists as UBERON:0035831 'costal diaphragm' (synonym: 'costal part of diaphragm', FMA:58277), part_of UBERON:0001103. Exclude from the template via confirmed_matches; no NTR needed. Curator should note the upstream HRA ASCT+B parent mapping error (UBERON:0000975 sternum) for feedback."
+    }
+  ]
+}

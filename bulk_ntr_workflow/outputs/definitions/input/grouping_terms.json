@@ -1,0 +1,28 @@
+{
+  "group_name": "grouping_terms",
+  "parent_id": "GROUPING_TERMS",
+  "parent_label": "(grouping terms \u2014 agent determines genus + part_of differentiator per term)",
+  "term_counts": {
+    "leaf": 0,
+    "group": 2
+  },
+  "note": "parent_label is best-effort; subagent should resolve via OLS4. For term_type='group' terms: use obo-grep on uberon-edit.obo to find similar UBERON groupings, identify the genus + part_of pattern, and fill genus + location. If pattern doesn't fit, route to manual_curation.",
+  "terms": [
+    {
+      "ntr_id": "http://purl.obolibrary.org/obo/UBERON_9900002",
+      "label": "anterior vertebral muscle",
+      "term_type": "group",
+      "genus": "",
+      "location": "",
+      "def_xref": "https://fipat.library.dal.ca/ta2/|ISBN:9780323393225|https://purl.org/ccf/ASCTB-TEMP_anterior-vertebral-muscle"
+    },
+    {
+      "ntr_id": "http://purl.obolibrary.org/obo/UBERON_9900007",
+      "label": "circular pharyngeal muscle",
+      "term_type": "group",
+      "genus": "",
+      "location": "",
+      "def_xref": "https://fipat.library.dal.ca/ta2/|ISBN:9780323393225|https://purl.org/ccf/ASCTB-TEMP_circular-pharyngeal-muscle"
+    }
+  ]
+}

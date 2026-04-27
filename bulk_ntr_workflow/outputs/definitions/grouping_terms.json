@@ -1,0 +1,56 @@
+{
+  "confirmed_matches": [
+    {
+      "label": "circular pharyngeal muscle",
+      "uberon_id": "UBERON:0001569",
+      "confidence": "high",
+      "uberon_definition": "Pharyngeal constrictor refers to one of the muscles that serves to constrict the pharynx. They include: Superior pharyngeal constrictor muscle Middle pharyngeal constrictor muscle Inferior pharyngeal constrictor muscle.",
+      "wikipedia_summary": "Pharyngeal constrictor / circular pharyngeal muscle is the outer circular layer of pharyngeal musculature comprising the superior, middle, and inferior constrictors; functions to constrict the pharyngeal lumen during swallowing.",
+      "note": "UBERON:0001569 has EXACT synonym 'pharyngeal constrictor muscle' and xref Wikipedia:Pharyngeal_constrictor. The TA2 'circular pharyngeal muscle' refers to the same circular layer collective. UBERON:0001569 is a parent class with members superior/middle/inferior pharyngeal constrictor (UBERON:0006329, UBERON:0010749, UBERON:0001570). Recommend adding 'circular pharyngeal muscle' as RELATED synonym to UBERON:0001569."
+    }
+  ],
+  "possible_matches": [
+    {
+      "label": "anterior vertebral muscle",
+      "uberon_id": "UBERON:0008549",
+      "confidence": "medium",
+      "note": "UBERON:0008549 'prevertebral muscle' has the same definition (one of the muscles deep to the prevertebral fascia... including the longus colli, longus capitis, rectus capitis anterior, and rectus capitis lateralis). Synonym 'flexor muscle of vertebral column'. The TA2 term 'anterior vertebral muscle' is a synonymous regional grouping. Curator should confirm whether to map directly to UBERON:0008549, to its child UBERON:0017647 'prevertebral muscle of neck', or add as RELATED synonym. Definition uses attaches_to + innervated_by axioms (multi-axiom pattern), not the simple genus + part_of pattern, so this would be out of scope for the EC template even if added as a new term."
+    }
+  ],
+  "manual_curation": [
+    {
+      "label": "anterior vertebral muscle",
+      "definition": "A group of muscles deep to the prevertebral fascia on the anterior surface of the cervical and superior thoracic vertebrae, comprising the longus colli, longus capitis, rectus capitis anterior, and rectus capitis lateralis muscles; innervated by anterior rami of cervical spinal nerves; functions in flexion of the head and neck.",
+      "reason": "The closest existing UBERON term is UBERON:0008549 (prevertebral muscle) which uses 'is_a + attaches_to + innervated_by' axioms — NOT the simple genus + part_of pattern supported by the groups template. If treated as a confirmed/possible match instead, no new term is needed. Curator should decide between mapping to UBERON:0008549 vs creating 'anterior vertebral muscle' as a synonym.",
+      "similar_terms": [
+        {
+          "id": "UBERON:0008549",
+          "label": "prevertebral muscle",
+          "intersection_of": ["(none — uses is_a + attaches_to UBERON:0002412 vertebra + innervated_by UBERON:0006838 ventral ramus of spinal nerve)"]
+        },
+        {
+          "id": "UBERON:0017647",
+          "label": "prevertebral muscle of neck",
+          "intersection_of": ["UBERON:0008549 prevertebral muscle", "part_of UBERON:0000974 neck"]
+        }
+      ],
+      "suggestion": "Most likely outcome: add 'anterior vertebral muscle' as RELATED synonym to UBERON:0008549, no new term needed."
+    }
+  ],
+  "definitions": {
+    "circular pharyngeal muscle": "A group of pharyngeal muscles forming the outer circular layer of the pharyngeal wall, comprising the superior, middle, and inferior pharyngeal constrictors, which encircle the pharynx and contract sequentially during swallowing to propel the food bolus into the esophagus; innervated chiefly by the pharyngeal branch of the vagus nerve (CN X).",
+    "anterior vertebral muscle": "A group of muscles deep to the prevertebral fascia on the anterior surface of the cervical and superior thoracic vertebrae, comprising the longus colli, longus capitis, rectus capitis anterior, and rectus capitis lateralis muscles, innervated by anterior rami of cervical spinal nerves and acting to flex and stabilize the head and neck."
+  },
+  "wikipedia_images": {
+    "circular pharyngeal muscle": "http://upload.wikimedia.org/wikipedia/commons/a/ac/Musculusconstrictorpharyngissuperior.png",
+    "anterior vertebral muscle": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Prevertebral_muscles.png"
+  },
+  "xrefs": {
+    "circular pharyngeal muscle": "Wikipedia:Pharyngeal_constrictor|FMA:46620",
+    "anterior vertebral muscle": "Wikipedia:Prevertebral_muscles|FMA:32514"
+  },
+  "def_xrefs_to_add": {
+    "circular pharyngeal muscle": "Wikipedia:Pharyngeal_constrictor",
+    "anterior vertebral muscle": "Wikipedia:Prevertebral_muscles"
+  }
+}
