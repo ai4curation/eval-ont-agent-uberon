@@ -179,11 +179,21 @@ def process(name: str) -> None:
                 row[COL_IMAGE] = images[label].strip()
                 updated_images += 1
 
-            # Merge direct xrefs (Wikipedia URL + FMA ID)
+            # Merge direct xrefs (Wikipedia URL + FMA ID) — append to any pre-populated value
             while len(row) <= COL_TERMREF:
                 row.append("")
             if label in xrefs and xrefs[label]:
-                row[COL_TERMREF] = xrefs[label].strip()
+                existing = row[COL_TERMREF].strip()
+                new_xref = xrefs[label].strip()
+                if existing:
+                    # Merge without duplicates
+                    parts = [p for p in existing.split("|") if p]
+                    for p in new_xref.split("|"):
+                        if p and p not in parts:
+                            parts.append(p)
+                    row[COL_TERMREF] = "|".join(parts)
+                else:
+                    row[COL_TERMREF] = new_xref
                 updated_xrefs += 1
 
             # Merge resolved relationships + resolved parents

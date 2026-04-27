@@ -98,6 +98,9 @@ Also record any **FMA ID** for the term itself (not the parent) if OLS4 returns 
 reference on a confirmed or candidate match: format `FMA:NNNNN`. Combine Wikipedia and FMA into a
 pipe-separated string: `"Wikipedia:Article_Title|FMA:NNNNN"`.
 
+Note: Stage 1 may have already pre-populated an FMA ID in the xref cell (when the term's own input
+IRI was an FMA IRI). The merge step will append without duplication, so just emit whatever you find.
+
 ## Step 4: Write Definitions
 
 For each term without a confirmed existing UBERON match:

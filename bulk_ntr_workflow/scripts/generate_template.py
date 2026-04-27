@@ -271,6 +271,8 @@ def process(input_path: Path, table_filter: str | None, start_id: int, name: str
             ])
 
         def_xref = format_refs(refs, iri)
+        # Pre-populate xref with FMA ID if the term's own IRI is an FMA IRI
+        own_fma = fma_id_from_iri(iri) if FMA_IRI_RE.search(iri) else ""
         counter += 1
 
         template_rows.append([
@@ -284,8 +286,8 @@ def process(input_path: Path, table_filter: str | None, start_id: int, name: str
             CREATION_DATE,
             CONTRIBUTOR_IRI,
             TAXON_IRI,
-            "",  # Wikipedia_image — filled by subagent
-            "",  # xref — filled by subagent (Wikipedia page + FMA)
+            "",       # Wikipedia_image — filled by subagent
+            own_fma,  # xref — FMA from source IRI; subagent adds Wikipedia + additional FMA
         ])
 
     # Write working copy of template
