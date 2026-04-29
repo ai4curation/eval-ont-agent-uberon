@@ -1,0 +1,24 @@
+{
+  "definitions": {
+    "dorsal part of intertransversarii laterales lumborum muscle": "A skeletal muscle bundle that is the posterior (dorsal) portion of the lateral intertransversarii muscles of the lumbar region, connecting the accessory processes of one lumbar vertebra to the transverse process of the adjacent vertebra; it acts to stabilise the lumbar vertebral column and assist lateral flexion."
+  },
+  "xrefs": {
+    "dorsal part of intertransversarii laterales lumborum muscle": "Wikipedia:Intertransversarii"
+  },
+  "def_xrefs_to_add": {
+    "dorsal part of intertransversarii laterales lumborum muscle": "doi:10.1007/BF00518810"
+  },
+  "resolved_relationships": {
+    "dorsal part of intertransversarii laterales lumborum muscle": "part_of"
+  },
+  "resolved_parents": {
+    "dorsal part of intertransversarii laterales lumborum muscle": "UBERON:0008242"
+  },
+  "unresolvable": [
+    {
+      "label": "dorsal part of intertransversarii laterales lumborum muscle",
+      "reason": "Source-supplied parent 'meningohypophyseal artery' is wrong-domain (an artery cannot be parent of a muscle subdivision). No UBERON term exists for the parent muscle 'intertransversarii laterales lumborum muscle' itself - the most specific available ancestor is UBERON:0008242 (lower back muscle). Ideally a parent term 'lateral intertransversarii lumborum muscle' should be added first, with this term as its dorsal subdivision (part_of).",
+      "suggestion": "Use UBERON:0008242 (lower back muscle) as the part_of parent for now. Curator should consider adding intermediate parent term 'lateral intertransversarii lumborum muscle' (FMA:32576 if available) and re-parenting this term as part_of that intermediate term. Note that 'dorsal part of' implies a subdivision, hence part_of relationship rather than is_a."
+    }
+  ]
+}

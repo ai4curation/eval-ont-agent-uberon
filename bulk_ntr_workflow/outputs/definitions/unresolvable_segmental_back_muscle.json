@@ -1,0 +1,24 @@
+{
+  "definitions": {
+    "anterior cervical intertransversarii muscle": "A small segmental back muscle that arises from the anterior tubercle of the transverse process of one cervical vertebra and inserts on the anterior tubercle of the transverse process of the adjacent cervical vertebra, contributing to lateral flexion and proprioceptive stabilisation of the cervical spine."
+  },
+  "xrefs": {
+    "anterior cervical intertransversarii muscle": "Wikipedia:Intertransversarii|FMA:71442"
+  },
+  "def_xrefs_to_add": {
+    "anterior cervical intertransversarii muscle": "PMID:12650404"
+  },
+  "resolved_relationships": {
+    "anterior cervical intertransversarii muscle": "is_a"
+  },
+  "resolved_parents": {
+    "anterior cervical intertransversarii muscle": "UBERON:0002324"
+  },
+  "unresolvable": [
+    {
+      "label": "segmental back muscle",
+      "reason": "Source parent label 'segmental back muscle' is not present in UBERON as a distinct class. The anterior cervical intertransversarii muscles span the transverse processes of adjacent cervical vertebrae and are classified as deep (segmental) back muscles in standard anatomy; the closest existing UBERON parent is UBERON:0002324 (muscle of back).",
+      "suggestion": "Use UBERON:0002324 (muscle of back) as the is_a parent. A more specific intermediate class such as 'segmental muscle of back' or 'deep muscle of back' could be added in future curation; 'musculature of neck' (UBERON:0004465) would be an alternative grouping for the cervical-region member but the source intent points to back musculature."
+    }
+  ]
+}
