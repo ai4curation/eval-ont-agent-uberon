@@ -1,0 +1,6 @@
+{
+  "body": "See https://github.com/ai4curation/aidocs/issues/39 for context\n\nThis also fixes the AI action such that it does not fetch the whole git history\n",
+  "comments": [],
+  "title": "Fixing AI permissions",
+  "url": "https://github.com/obophenotype/uberon/pull/3606"
+}
