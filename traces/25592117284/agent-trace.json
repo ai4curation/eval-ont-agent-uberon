@@ -1,0 +1,11 @@
+Reading additional input from stdin...
+2026-05-09T04:51:44.220007Z ERROR codex_core::session: failed to load skill /__w/eval-ont-agent-uberon/eval-ont-agent-uberon/.claude/skills/metadata-checker/SKILL.md: invalid YAML: mapping values are not allowed in this context at line 2 column 290
+2026-05-09T04:51:44.220021Z ERROR codex_core::session: failed to load skill /__w/eval-ont-agent-uberon/eval-ont-agent-uberon/.claude/skills/design-pattern-advisor/SKILL.md: invalid YAML: mapping values are not allowed in this context at line 2 column 277
+2026-05-09T04:51:44.220027Z ERROR codex_core::session: failed to load skill /__w/eval-ont-agent-uberon/eval-ont-agent-uberon/.claude/skills/task-coordinator/SKILL.md: invalid YAML: mapping values are not allowed in this context at line 2 column 223
+2026-05-09T04:51:44.220030Z ERROR codex_core::session: failed to load skill /__w/eval-ont-agent-uberon/eval-ont-agent-uberon/.claude/skills/identifier-validator/SKILL.md: invalid YAML: mapping values are not allowed in this context at line 2 column 467
+2026-05-09T04:51:44.220034Z ERROR codex_core::session: failed to load skill /__w/eval-ont-agent-uberon/eval-ont-agent-uberon/.claude/skills/ontology-reasoner/SKILL.md: invalid YAML: mapping values are not allowed in this context at line 2 column 210
+2026-05-09T04:51:44.220037Z ERROR codex_core::session: failed to load skill /__w/eval-ont-agent-uberon/eval-ont-agent-uberon/.claude/skills/deep-research-specialist/SKILL.md: invalid YAML: mapping values are not allowed in this context at line 2 column 392
+{"type":"thread.started","thread_id":"019e0b13-c0ff-7dc2-840d-ebbe537c9496"}
+{"type":"turn.started"}
+{"type":"error","message":"{\"type\":\"error\",\"status\":400,\"error\":{\"type\":\"invalid_request_error\",\"message\":\"The 'codex-mini-latest' model is not supported when using Codex with a ChatGPT account.\"}}"}
+{"type":"turn.failed","error":{"message":"{\"type\":\"error\",\"status\":400,\"error\":{\"type\":\"invalid_request_error\",\"message\":\"The 'codex-mini-latest' model is not supported when using Codex with a ChatGPT account.\"}}"}}
