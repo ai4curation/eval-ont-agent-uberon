@@ -1,0 +1,6 @@
+{
+  "body": "```yaml\nid: UBERON:0005436\nname: common hepatic artery\ndef: \"In anatomy, the common hepatic artery is a short blood vessel that supplies oxygenated blood to the liver, pylorus (a part of the stomach), duodenum (a part of the small intestine) and pancreas. It arises from the celiac artery and has the following branches:.\" [Wikipedia:Common_hepatic_artery]\n```\n\nJust shorten this further so it's not trailing",
+  "comments": [],
+  "title": "Definition of common hepatic artery is truncated",
+  "url": "https://github.com/obophenotype/uberon/issues/3509"
+}
