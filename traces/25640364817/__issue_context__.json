@@ -1,0 +1,22 @@
+{
+  "body": "Uberon has:\n\n[foramen secundum](http://purl.obolibrary.org/obo/UBERON_0006678) [part of](http://purl.obolibrary.org/obo/BFO_0000050) [atrial septum secundum](http://purl.obolibrary.org/obo/UBERON_0004155)\n\nNCIT has:\n\n[Septum Secundum](http://purl.obolibrary.org/obo/NCIT_C34295) [Anatomic_Structure_Is_Physical_Part_Of](http://purl.obolibrary.org/obo/NCIT_R82) [Foramen Secundum](http://purl.obolibrary.org/obo/NCIT_C34179)\n\nThe 'part of' relationship goes in the opposite direction.\n\nUberon contains mappings to the respective NCIT terms. Which is correct?",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd86sXUwY",
+      "author": {
+        "login": "rays22"
+      },
+      "authorAssociation": "COLLABORATOR",
+      "body": "Good catch.\nI am afraid neither the current Uberon nor the NCIT 'part of' relationship is correct.\n\n1. Uberon [UBERON:0006678 foramen secundum](https://www.ebi.ac.uk/ols4/ontologies/uberon/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FUBERON_0006678) has:\n    * ~'foramen secundum part of atrial septum secundum'~ --> **FALSE!!**\n        * CORRECTLY: [UBERON:0006678 foramen secundum](https://www.ebi.ac.uk/ols4/ontologies/uberon/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FUBERON_0006678) **'part of' some 'atrial septum primum'**\n            * The corrected definition is based on the description \"*the foramen secundum or ostium secundum is a foramen in the septum primum*\" in the wikipedia article on [Foramen secundum](https://en.wikipedia.org/wiki/Foramen_secundum).\n            * The corrected definition is also supported by the medical anatomy textbook ISBN: 9632412311 that I have at hand.\n2.  NCIT [NCIT:C34295 Septum Secundum](https://www.ebi.ac.uk/ols4/ontologies/ncit/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FNCIT_C34295) - [NCIT:C34179 Foramen Secundum](https://www.ebi.ac.uk/ols4/ontologies/ncit/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FNCIT_C34179?lang=en) relationship:\n    * ~Septum Secundum Anatomic_Structure_Is_Physical_Part_Of Foramen Secundum~ --> also **FALSE!!**\n    *This relationship is incorrect for multiple reasons:\n        * It reverses the actual anatomical relationship - a septum (which is a wall or partition) cannot be part of a foramen (which is an opening or hole).\n        * Neither structure is physically part of the other - they are distinct entities with specific developmental and spatial relationships:\n            * the septum secundum is the second septal structure that grows down from the roof of the atrium\n            * the foramen secundum is an opening that forms in the septum primum (not in the septum secundum)\n        * The correct developmental relationship is that the foramen secundum forms in the septum primum, while the foramen ovale forms in the septum secundum. These are separate structures that work together to create a one-way valve for fetal blood circulation.\n\nI will correct the EQ of [UBERON:0006678 foramen secundum](https://www.ebi.ac.uk/ols4/ontologies/uberon/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FUBERON_0006678) to:\n* (['anatomical conduit'](https://www.ebi.ac.uk/ols4/ontologies/uberon/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FUBERON_0004111?lang=en) and 'part of' some ['atrial septum primum'](https://www.ebi.ac.uk/ols4/ontologies/uberon/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FUBERON_0004154))",
+      "createdAt": "2025-05-19T17:37:50Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3522#issuecomment-2891795480",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "relationship is reversed between Uberon and NCIT for foramen secundum",
+  "url": "https://github.com/obophenotype/uberon/issues/3522"
+}
