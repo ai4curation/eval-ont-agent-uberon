@@ -1,0 +1,22 @@
+{
+  "body": "**Uberon term**\r\ncardiac septum (UBERON:0002099)\r\n\r\ncurrent definition is too narrow for the child terms \r\n\r\nThe definition is  \"The thin membranous structure between the two heart atria or the thick muscular structure between the two heart ventricles\" but child terms include septa between the atria and ventricles and outflow tract septa.\r\n\r\n**Suggested revision of textual definition**\r\nRevised definition assuming the child terms are correct (that is this term is intended to cover all septa between parts of the heart not just those between the atria or ventricles)\r\n\r\n\"The thin membranous structure between parts of the heart, including the atria, ventricles, and outflow tract.\"\r\n\r\n\r\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd85yVZBg",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "CONTRIBUTOR",
+      "body": "This issue has not seen any activity in the past 6 months; it will be closed automatically one year from now if no action is taken.",
+      "createdAt": "2024-01-31T01:42:48Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3003#issuecomment-1918210144",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "review definition of cardiac septum and its child terms",
+  "url": "https://github.com/obophenotype/uberon/issues/3003"
+}
