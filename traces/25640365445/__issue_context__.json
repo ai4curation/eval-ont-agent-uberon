@@ -1,0 +1,52 @@
+{
+  "body": "Fixes #3530\n\nAs requested, I've added a comment to UBERON:0000000 stating that the term is being aligned with COB, and added a see_also link to https://github.com/OBOFoundry/COB/issues/51.\n\n@dragon-ai-agent",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd86smtDM",
+      "author": {
+        "login": "cmungall"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent please look at existing seeAlsos in the ontology to get the right syntax",
+      "createdAt": "2025-05-20T21:03:57Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/pull/3531#issuecomment-2895827148",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86smv0D",
+      "author": {
+        "login": "cmungall"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "After examining the Uberon ontology, I found that the correct syntax for seeAlso entries is:\n\n\\\\\\\n\nFor example:\n- \\\n- \\\n\nWhen referencing other ontology terms:\n\\\\\\\n\nFor example:\n- \\\n- \\\n\nYou can also add optional notes to provide context.\n\nSigned by @dragon-ai-agent",
+      "createdAt": "2025-05-20T21:09:41Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/pull/3531#issuecomment-2895838467",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86smv8w",
+      "author": {
+        "login": "cmungall"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "After examining the Uberon ontology, I found that the correct syntax for seeAlso entries is:\n\nproperty_value: seeAlso \"URL\" xsd:anyURI\n\nFor example:\n- property_value: seeAlso \"https://github.com/obophenotype/uberon/issues/457\" xsd:anyURI\n- property_value: seeAlso \"http://purl.obolibrary.org/obo/uberon/docs/The-axial-skeleton\" xsd:anyURI\n\nWhen referencing other ontology terms:\nproperty_value: seeAlso \"TERM_ID\" xsd:string\n\nFor example:\n- property_value: seeAlso \"GO:0007592\" xsd:string\n- property_value: seeAlso \"UBERON:0012254\" xsd:string {notes=\"abdominal aorta artery\"}\n\nYou can also add optional notes to provide context.\n\nSigned by @dragon-ai-agent",
+      "createdAt": "2025-05-20T21:09:57Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/pull/3531#issuecomment-2895839024",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "Add COB alignment comment and see_also link to UBERON:0000000",
+  "url": "https://github.com/obophenotype/uberon/pull/3531"
+}
