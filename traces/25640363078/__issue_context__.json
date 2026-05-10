@@ -1,0 +1,22 @@
+{
+  "body": "**Uberon term**\nUBERON:0005162 'multi cell part structure'\n\n**Suggested revision of textual definition**\nFBbt is planning to revise the mapped term FBbt:00007060 'multi-cell component structure', to allow for some whole cells to be present. This is because many of the current subclasses may contain whole cells (particularly glia in nervous system regions), despite mainly being composed of partial cells. Uberon may wish to consider making a similar change. If not we can remove our mapping.\n\nsee https://github.com/FlyBase/drosophila-anatomy-developmental-ontology/issues/2008",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd86zllf0",
+      "author": {
+        "login": "Clare72"
+      },
+      "authorAssociation": "NONE",
+      "body": "Note - change has now been made in FBbt",
+      "createdAt": "2025-06-27T12:49:18Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3490#issuecomment-3012974580",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "consider allowing some whole cells in a 'multi cell part structure'",
+  "url": "https://github.com/obophenotype/uberon/issues/3490"
+}
