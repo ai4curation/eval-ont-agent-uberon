@@ -1,0 +1,22 @@
+{
+  "body": "A few of the root unsatisfiable classes found in the merge product of Uberon and ZFA are caused by what I believe are simple errors that are entirely internal to Uberon (and that are merely revealed by the merge with ZFA).\r\n\r\n# uvea\r\n\r\n[uvea](http://purl.obolibrary.org/obo/UBERON_0001768) is said to be [part_of](http://purl.obolibrary.org/obo/BFO_0000050) the '[anterior segment of eyeball](http://purl.obolibrary.org/obo/UBERON_0001801)', which is defined as “any of the parts of the eye that lie in front of, or ventral to, the lens (inclusive)”.\r\n\r\nThat doesn’t sound correct as, from what I can see, the uvea clearly appears to extend dorsally relative to the lens (if only by its '[optic choroid](http://purl.obolibrary.org/obo/UBERON_0001776)' part, which is incidentally said to [overlap](http://purl.obolibrary.org/obo/RO_0002131) the '[posterior segment of eyeball](http://purl.obolibrary.org/obo/UBERON_0001802).\r\n\r\nThe [uvea](http://purl.obolibrary.org/obo/UBERON_0001768) [part_of](http://purl.obolibrary.org/obo/BFO_0000050) some '[anterior segment of eyeball](http://purl.obolibrary.org/obo/UBERON_0001801)' axiom should be removed – possibly replaced by a relationship to a larger structure, though this may not be needed since there is already axiom stating that [uvea](http://purl.obolibrary.org/obo/UBERON_0001768) '[contributes to the morphology of](http://purl.obolibrary.org/obo/RO_0002433)' some '[camera-type eye](http://purl.obolibrary.org/obo/UBERON_0000019)', which should be enough.\r\n\r\n# 'future brain vesicle'\r\n\r\n'[future brain vesicle](http://purl.obolibrary.org/obo/UBERON_0013150)' (no text definition) is classified as an '[open anatomical space](http://purl.obolibrary.org/obo/UBERON_0010064)', ultimately an immaterial anatomical entity.\r\n\r\nThat does not seem consistent with Uberon’s “habits” of representing most anatomical cavities or spaces with terms representing the (material) structures that make them (plus optionally terms to represent the actual space inside, if it is needed for some reason).\r\n\r\n'[future brain vesicle](http://purl.obolibrary.org/obo/UBERON_0013150)' is [part_of](http://purl.obolibrary.org/obo/BFO_0000050) the '[ventricular system of central nervous system](http://purl.obolibrary.org/obo/UBERON_0005281)', which is explicitly defined as “a set of **structures** containing cerebrospinal fluid in the brain” (emphasis mine).\r\n\r\nI believe the brain vesicles should be made to be material anatomical structures rather than immaterial anatomical spaces. If needed, we could create a new term “lumen of brain vesicle” to refer to the actual space within those vesicles, similarly to '[lumen of central canal of spinal cord](http://purl.obolibrary.org/obo/UBERON_0009572)'.\r\n\r\n# 'scale circulus'\r\n\r\n'[scale circulus](http://purl.obolibrary.org/obo/UBERON_2002051)' is classified as an immaterial '[anatomical line](http://purl.obolibrary.org/obo/UBERON_2002051)', contrary to its [ZFA counterpart](http://purl.obolibrary.org/obo/ZFA_0005499) which is a material '[anatomical structure](http://purl.obolibrary.org/obo/ZFA_0000037)'.\r\n\r\nThe text definition says it is a “fine ridge on surface of scale”, which suggests to me that ZFA is right in making it a material structure. If it is a “ridge”, then it must have some consistence. ",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd86gsdQ5",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "CONTRIBUTOR",
+      "body": "This issue has not seen any activity in the past 6 months; it will be closed automatically one year from now if no action is taken.",
+      "createdAt": "2025-03-04T02:18:35Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3354#issuecomment-2696008761",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "ZFA/Uberon issues: simple errors in Uberon",
+  "url": "https://github.com/obophenotype/uberon/issues/3354"
+}
