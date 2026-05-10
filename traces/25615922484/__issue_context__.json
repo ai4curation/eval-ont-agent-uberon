@@ -1,0 +1,6 @@
+{
+  "body": "**Uberon term**\nsecondary visual cortex\n\n**Suggested revision of textual definition**\n\ndef: \"A functional part of the visual cortex that plays a crucial role in the integration of information from various visual modalities and contribute to higher-order visual functions, including colour, object recognition and spatial awareness.\" [ISBN:978-0-323-10027-4, ISSN:0072-9752, WikipediaVersioned:Visual_cortex&oldid=1268682728]\n\n**Other issues**\n\nI see that there is a redundant 'part of' some 'occipital lobe' axiom there too \nThere already is 'part of' some 'visual cortex', and 'visual cortex' is 'part of' some 'occipital lobe'",
+  "comments": [],
+  "title": "[Text Def] UBERON:0022232 secondary visual cortex has no textual definition",
+  "url": "https://github.com/obophenotype/uberon/issues/3471"
+}
