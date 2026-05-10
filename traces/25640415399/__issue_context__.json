@@ -1,0 +1,74 @@
+{
+  "body": "We are currently in the process of reviewing GI datasets in CELLxGENE with some folks at Sanger. The mucosa is composed of the epithelium and lamina propria:\n\n<img src=\"https://github.com/user-attachments/assets/afe5d9fc-bb04-4df8-8e45-f3fe736c30e6\" width=\"500\" />\n\n\nThere are current UBERON terms that are used to describe these layers for specific portions of the GI track, examples:\n\n- [jejunal epithelium](http://purl.obolibrary.org/obo/UBERON_0000400)\n- [jejunum lamina propria](http://purl.obolibrary.org/obo/UBERON_8600034)\n\nTo enable consistency and ability to search for the specific layer along all portions of the large intestine, we were hoping to have new terms added:\n\n- **Tissues that do not have an epithelium term**: ascending colon, descending colon, sigmoid colon and transverse colon\n- **Tissues that do not have a lamina propria term**: ascending colon, descending colon, sigmoid colon, transverse colon, stomach, caecum, rectum\n\nWe also have some questions regarding the parent terms of existing terms. But wanted to start this ticket to see what your thoughts are on these new term requests. Much appreciated.\n\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd86soJJ0",
+      "author": {
+        "login": "dosumis"
+      },
+      "authorAssociation": "CONTRIBUTOR",
+      "body": "@dragon-ai-agent please add a set of epithelium terms, each defined as part of one of the following gut regions: ascending colon, descending colon, sigmoid colon and transverse colon.  All should have equivalent class definitions with 'intestinal epithelium' in the genus position.  All should have a textual definition following the pattern 'A epithelial layer that lines the {gut region}', where {gut region} is replaces with the name of the gut region it is part_of.  Please avoid using UBERON IDs UBERON:7770000, UBERON:7770001, UBERON:7770002, UBERON:7770003, UBERON:7770004",
+      "createdAt": "2025-05-21T01:32:36Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3495#issuecomment-2896204404",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86soMiz",
+      "author": {
+        "login": "cmungall"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "Hi @jychien, I've created a PR (#3541) with the epithelium terms for the colon regions as requested. I've added terms for ascending colon epithelium, transverse colon epithelium, descending colon epithelium, and sigmoid colon epithelium. Each term has an equivalent class definition with 'intestinal epithelium' in the genus position and textual definitions following the pattern 'An epithelial layer that lines the {gut region}'.\n\nThe PR is available at: https://github.com/obophenotype/uberon/pull/3541\n\n@dragon-ai-agent",
+      "createdAt": "2025-05-21T01:39:27Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [
+        {
+          "content": "THUMBS_UP",
+          "users": {
+            "totalCount": 1
+          }
+        }
+      ],
+      "url": "https://github.com/obophenotype/uberon/issues/3495#issuecomment-2896218291",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86soO5f",
+      "author": {
+        "login": "cmungall"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "I've added a set of epithelium terms for the requested colon regions:\n\n- epithelium of ascending colon (UBERON:7770001)\n- epithelium of transverse colon (UBERON:7770002)\n- epithelium of descending colon (UBERON:7770003)\n- epithelium of sigmoid colon (UBERON:7770004)\n\nEach term has:\n- A definition following the pattern 'An epithelial layer that lines the {gut region}'\n- 'intestinal epithelium' in genus position as requested\n- Appropriate synonyms and relationships\n\nThese changes have been submitted as PR #3541.\n\n@dragon-ai-agent",
+      "createdAt": "2025-05-21T01:41:44Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3495#issuecomment-2896227935",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86soTwW",
+      "author": {
+        "login": "dosumis"
+      },
+      "authorAssociation": "CONTRIBUTOR",
+      "body": "@dragon-ai-agent please also add a set of [lamina propria](http://purl.obolibrary.org/obo/UBERON_8600034) terms each defined part of one of the following gut segments:  ascending colon, descending colon, sigmoid colon, transverse colon, stomach, caecum, rectum.  Each should have a textual definition following the pattern: \"The lamina propria that underlies the epithelial lining of the { gut segment }\".  Note, there is no need to duplicate `intersection_of: part_of { gut segment }` as a relationship. ",
+      "createdAt": "2025-05-21T01:59:18Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3495#issuecomment-2896247830",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "epithelium and lamina propria for GI tract",
+  "url": "https://github.com/obophenotype/uberon/issues/3495"
+}
