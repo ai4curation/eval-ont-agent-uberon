@@ -1,0 +1,37 @@
+{
+  "body": "**Preferred term label:**\nuterine fundus\n\n**Synonyms**\nfundus uteri [exact] reference: PMID:39112955\n\n**Definition (free text, please give PubMed ID)**\nThe superior, dome-shaped portion of the uterus.\nPMID:41204538, PMID:40653088\n\n**Parent term (use https://www.ebi.ac.uk/ols/ontologies/uberon)**\n'organ part'\n'part of' some uterus\n\n**Your nano-attribution (ORCID)**\nhttps://orcid.org/0000-0001-6677-8489\n\n\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd87W-8IQ",
+      "author": {
+        "login": "aleixpuigb"
+      },
+      "authorAssociation": "COLLABORATOR",
+      "body": "@dragon-ai-agent please add this term.",
+      "createdAt": "2025-12-03T13:19:28Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3637#issuecomment-3606823440",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd87W--Z4",
+      "author": {
+        "login": "dragon-ai-agent"
+      },
+      "authorAssociation": "COLLABORATOR",
+      "body": "I'm working on adding this term now. However, I noticed that the PMIDs provided (PMID:41204538 and PMID:40653088) appear to be incorrect - these PMID numbers are beyond the current range. Could you please double-check these references?\n\nIn the meantime, I'll proceed with creating the term structure, but I'll need valid PMIDs for the definition before finalizing.",
+      "createdAt": "2025-12-03T13:21:38Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3637#issuecomment-3606832760",
+      "viewerDidAuthor": true
+    }
+  ],
+  "title": "[NTR] 'uterine fundus'",
+  "url": "https://github.com/obophenotype/uberon/issues/3637"
+}
