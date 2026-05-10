@@ -1,0 +1,22 @@
+{
+  "body": "esophagus (UBERON:0001043) currently is 'located in' some 'thoracic cavity'. Since it also has a cervical part and an abdominal part (at least in humans), we need to remove this axiom.\n\n'esophageal artery' (UBERON:0035539) is currently 'branching part of' some 'thoracic aorta'. It should be replaced by 'connecting branch of' some 'thoracic aorta'.\n\n\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd86z7QJX",
+      "author": {
+        "login": "aleixpuigb"
+      },
+      "authorAssociation": "COLLABORATOR",
+      "body": "@dragon-ai-agent please make these changes.",
+      "createdAt": "2025-06-30T10:38:34Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3572#issuecomment-3018654295",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "Revise esophagus and esophageal artery partonomy",
+  "url": "https://github.com/obophenotype/uberon/issues/3572"
+}
