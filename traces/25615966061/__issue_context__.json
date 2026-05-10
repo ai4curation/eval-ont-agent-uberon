@@ -1,0 +1,6 @@
+{
+  "body": "**Uberon term**\n\nsquamous epithelium\n\n**Suggested revision of logical definition**\n\nsquamous epithelium EquivalentTo epithelium and ('has part' some 'squamous epithelial cell') !\n\nSo an epithelium that has a minority of squamous cells (or even just one!) would be considered squamous.\n\nSuggested fix:\n\n'squamous epithelium' as equivlanetTo epithelium that primarily_composed_of some 'squamous epithelial cell'\n\nImportant to test results of change and fix/align.\n\nsee also https://github.com/obophenotype/cell-ontology/issues/2671\n",
+  "comments": [],
+  "title": "Not all epithelia with squamous cells are squamous epithelium",
+  "url": "https://github.com/obophenotype/uberon/issues/3473"
+}
