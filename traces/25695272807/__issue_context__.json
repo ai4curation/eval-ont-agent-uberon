@@ -1,0 +1,44 @@
+{
+  "body": "**Preferred term label:**\nocclusal surface of tooth\n\n**Synonyms**\nocclusal surface\n\n**Definition (free text, please give PubMed ID)**\nA tooth surface structure that forms the biting or grinding surface of a molar or premolar.\ncross reference: https://dentaleducationhub.com/surfaces-of-the-teeth/\ncross reference: https://terminology.hl7.org/CodeSystem-FDI-surface.html\n\n**Parent term (use https://www.ebi.ac.uk/ols/ontologies/uberon)**\nhttp://purl.obolibrary.org/obo/UBERON_8600148\n\n**Your nano-attribution (ORCID)**\nhttps://orcid.org/0000-0001-9625-1899\n\n@aleixpuigb Not sure how I missed this! Sorry about that :(",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd87A-s3Y",
+      "author": {
+        "login": "aleixpuigb"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "Hi @wdduncan, no problem, I will add. I also missed it!",
+      "createdAt": "2025-08-29T16:56:56Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [
+        {
+          "content": "LAUGH",
+          "users": {
+            "totalCount": 1
+          }
+        }
+      ],
+      "url": "https://github.com/obophenotype/uberon/issues/3602#issuecomment-3237662168",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd87A-vZS",
+      "author": {
+        "login": "aleixpuigb"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent please can you add 'occlusal surface of tooth'. Please can you use the Uberon ID 'UBERON:8600149' and make sure that you add the ORCID? The synonym is an exact synonym and you can use 'https://dentaleducationhub.com/surfaces-of-the-teeth/' to reference it.",
+      "createdAt": "2025-08-29T17:01:39Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3602#issuecomment-3237672530",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "NTR: occlusal surface of tooth",
+  "url": "https://github.com/obophenotype/uberon/issues/3602"
+}
