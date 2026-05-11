@@ -1,0 +1,7 @@
+Performing one time database migration, may take a few minutes...
+sqlite-migration:done
+Database migration complete.
+{"type":"step_start","timestamp":1778535188159,"sessionID":"ses_1e70ad757ffe6i46CkP2FcjED2","part":{"id":"prt_e18f546bd0013Ls2fK94BPbTt2","messageID":"msg_e18f52952001CETQU5wYeOqODz","sessionID":"ses_1e70ad757ffe6i46CkP2FcjED2","snapshot":"885fd19229fc455e1f1456fcaf5c1f04a19c1aaa","type":"step-start"}}
+[93m[1m! [0mpermission requested: external_directory (/__home/runner/work/eval-ont-agent-uberon/eval-ont-agent-uberon/*); auto-rejecting
+{"type":"tool_use","timestamp":1778535220871,"sessionID":"ses_1e70ad757ffe6i46CkP2FcjED2","part":{"type":"tool","tool":"read","callID":"chatcmpl-tool-93270ba01be0d7e3","state":{"status":"error","input":{"filePath":"/__home/runner/work/eval-ont-agent-uberon/eval-ont-agent-uberon/__issue_context__.json"},"error":"The user rejected permission to use this specific tool call.","time":{"start":1778535220857,"end":1778535220870}},"id":"prt_e18f5a7e9001IGaasE0Q8T11rj","sessionID":"ses_1e70ad757ffe6i46CkP2FcjED2","messageID":"msg_e18f52952001CETQU5wYeOqODz"}}
+{"type":"step_finish","timestamp":1778535222232,"sessionID":"ses_1e70ad757ffe6i46CkP2FcjED2","part":{"id":"prt_e18f5cbd5001vC6j9P5YAJvzmZ","reason":"tool-calls","snapshot":"885fd19229fc455e1f1456fcaf5c1f04a19c1aaa","messageID":"msg_e18f52952001CETQU5wYeOqODz","sessionID":"ses_1e70ad757ffe6i46CkP2FcjED2","type":"step-finish","tokens":{"total":16155,"input":15989,"output":166,"reasoning":0,"cache":{"write":0,"read":0}},"cost":0.0032808}}
