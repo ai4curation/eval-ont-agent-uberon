@@ -1,0 +1,22 @@
+{
+  "body": "**Preferred term label:**\r\nmedial prefrontal cortex\r\n\r\n**Synonyms**\r\nnone\r\n\r\n**Definition (free text, please give PubMed ID)**\r\nThe medial prefrontal cortex (mPFC) is a subdivision of the prefrontal cortex composed of BA12, BA25, and anterior cingulate cortex: BA32, BA33, BA24. Within this region is the dorsal nexus, which interconnects multiple brain networks and plays a role in maintenance and manipulation of information (working memory), as well as supporting the control of cognitive functions such as emotion processing and regulation, memory, decision making, and conflict resolution. \r\nReference: modified from wikipedia\r\n\r\n**Parent term (use https://www.ebi.ac.uk/ols/ontologies/uberon)**\r\npart_of 'prefrontal cortex' http://purl.obolibrary.org/obo/UBERON_0000451\r\nis_a 'regional part of brain' http://purl.obolibrary.org/obo/UBERON_0002616\r\n\r\n**Your nano-attribution (ORCID)**\r\nhttps://orcid.org/0000-0001-7628-5565 (Michelle Giglio)\r\nhttps://orcid.org/0000-0002-4964-5083 (Dana Gabuzda)\r\n\r\nThis term is requested as part of work on the SCORCH Project (Single Cell Opioid Response in the Context of HIV).\r\n\r\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd86oZCC-",
+      "author": {
+        "login": "mgiglio99"
+      },
+      "authorAssociation": "NONE",
+      "body": "Hello @ar-ibrahim \nPlease let me know if you need any other information for this new term.\nAlso looping in @JPReceveur who works on this project too.\nThanks,\nMichelle\n",
+      "createdAt": "2025-04-23T18:16:20Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3446#issuecomment-2825134270",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "NTR: medial prefrontal cortex",
+  "url": "https://github.com/obophenotype/uberon/issues/3446"
+}
