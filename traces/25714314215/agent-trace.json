@@ -1,0 +1,7 @@
+Performing one time database migration, may take a few minutes...
+sqlite-migration:done
+Database migration complete.
+{"type":"step_start","timestamp":1778563768925,"sessionID":"ses_1e558af27ffeBiyd45tuqmmzeB","part":{"id":"prt_e1aa96258001G0B26D9nARRC2m","messageID":"msg_e1aa75188001kcDs0oDSOZzksh","sessionID":"ses_1e558af27ffeBiyd45tuqmmzeB","snapshot":"05de0bef1f253e6e6254e0d68f50876edb2bbd29","type":"step-start"}}
+[93m[1m! [0mpermission requested: external_directory (/*); auto-rejecting
+{"type":"tool_use","timestamp":1778563855820,"sessionID":"ses_1e558af27ffeBiyd45tuqmmzeB","part":{"type":"tool","tool":"read","callID":"chatcmpl-tool-ae58e830c53f60e8","state":{"status":"error","input":{"filePath":"/__issue_context__.json"},"error":"The user rejected permission to use this specific tool call.","time":{"start":1778563855806,"end":1778563855818}},"id":"prt_e1aaa71e6001n47c5EAiCTqbXU","sessionID":"ses_1e558af27ffeBiyd45tuqmmzeB","messageID":"msg_e1aa75188001kcDs0oDSOZzksh"}}
+{"type":"step_finish","timestamp":1778563862870,"sessionID":"ses_1e558af27ffeBiyd45tuqmmzeB","part":{"id":"prt_e1aaad1530010Q3wJy3CN7t4D5","reason":"tool-calls","snapshot":"05de0bef1f253e6e6254e0d68f50876edb2bbd29","messageID":"msg_e1aa75188001kcDs0oDSOZzksh","sessionID":"ses_1e558af27ffeBiyd45tuqmmzeB","type":"step-finish","tokens":{"total":16138,"input":15989,"output":149,"reasoning":0,"cache":{"write":0,"read":0}},"cost":0.0032723}}
