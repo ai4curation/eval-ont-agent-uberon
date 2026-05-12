@@ -1,0 +1,82 @@
+{
+  "body": "**Uberon term**\r\nhttp://purl.obolibrary.org/obo/UBERON_0009834\r\n\r\n**Bug description**\r\nThis is not necessarily a bug - just a question at this point - but there wasn't another category of new issue to choose. I notice that 'dorsolateral prefrontal cortex' http://purl.obolibrary.org/obo/UBERON_0009834 is a sibling of 'prefrontal cortex' http://purl.obolibrary.org/obo/UBERON_0000451 but it seems to me that it should be a part_of child of it instead.\r\n\r\nBest,\r\nMichelle\r\n\r\nThis term question arose as part of work on the SCORCH Project (Single Cell Opioid Response in the Context of HIV).\r\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd86oZFHi",
+      "author": {
+        "login": "mgiglio99"
+      },
+      "authorAssociation": "NONE",
+      "body": "Looping in @JPReceveur who works on this project too.",
+      "createdAt": "2025-04-23T18:22:08Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3447#issuecomment-2825146850",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86snI64",
+      "author": {
+        "login": "dosumis"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "This is consistent with the Allen Brain Atlas, which I think should be our source of truth for this.  \n\n<img width=\"357\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/df31bfc3-dd6b-4606-90be-7d22d493da67\" />\n\n http://atlas.brain-map.org/atlas?atlas=138322603#structure=10172\n\n@dragon-ai-agent  - please change the part relationship from 'dorsolateral prefrontal cortex' to 'cerebral cortex' to a part relationship to 'prefrontal cortex'.",
+      "createdAt": "2025-05-20T22:06:20Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3447#issuecomment-2895941304",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86vuaTs",
+      "author": {
+        "login": "mgiglio99"
+      },
+      "authorAssociation": "NONE",
+      "body": "Thanks very much @dosumis \nBest,\nMichelle\n",
+      "createdAt": "2025-06-06T05:51:31Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3447#issuecomment-2948179180",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86xbEvE",
+      "author": {
+        "login": "dosumis"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent please change the part relationship on 'dorsolateral prefrontal cortex' from 'cererbral cortex' to 'prefrontal cortex'",
+      "createdAt": "2025-06-16T13:28:25Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3447#issuecomment-2976664516",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86xbFNe",
+      "author": {
+        "login": "dosumis"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "(Note - previous agent invocation failed - probably due to additional '-' before the please?)",
+      "createdAt": "2025-06-16T13:29:00Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3447#issuecomment-2976666462",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "question on parentage of 'dorsolateral prefrontal cortex'",
+  "url": "https://github.com/obophenotype/uberon/issues/3447"
+}
