@@ -1,0 +1,6 @@
+{
+  "body": "**Uberon term**\n\nhttp://purl.obolibrary.org/obo/UBERON_0002835\n\n**Suggested revision and reasons**\n\nDorsal root ganglia are not paravertebral/sympathetic ganglia. The thoracic ganglion currently have http://purl.obolibrary.org/obo/UBERON_0002835 as a subclass.\n\nRecommendation:\n- remove thoracic dorsal root ganglion as a subclass of thoracic ganglion.\n- clarify the name of thoracic ganglion (http://purl.obolibrary.org/obo/UBERON_0002835) to thoracic paravertebral ganglion, since thoracic ganglion would more properly refer to ganglia that are within the thorax, including spinal, prevertebral and paravertebral ganglia\n",
+  "comments": [],
+  "title": "Remove Thoracic dorsal root ganglion as a part of thoracic ganglion",
+  "url": "https://github.com/obophenotype/uberon/issues/3475"
+}
