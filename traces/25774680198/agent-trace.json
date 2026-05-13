@@ -1,0 +1,155 @@
+I'll help you address issue #3003. Let me start by reading the issue context to understand what needs to be done.
+
+● Read __issue_context__.json
+  └ 22 lines read
+
+Now let me examine the current definition and child terms of cardiac septum (UBERON:0002099):
+
+● Get cardiac septum term details (shell)
+  │ obo-grep.pl -r 'id: UBERON:0002099' src/ontology/uberon-edit.obo
+  └ 244 lines...
+
+Now let me find all child terms of cardiac septum to understand what types of septa are included:
+
+● Find direct child terms of cardiac septum (shell)
+  │ obo-grep.pl -r 'is_a: UBERON:0002099' src/ontology/uberon-edit.obo | grep
+  │ '^id:' | head -30
+  └ 1 line...
+
+Let me search for terms that mention cardiac septum as a parent or have it in relationships:
+
+● Find terms related to cardiac septum (shell)
+  │ obo-grep.pl -r 'UBERON:0002099' src/ontology/uberon-edit.obo | grep -E
+  │ '(^id:|^name:|is_a: UBERON:0002099|part_of UBERON:0002099)' | head -50
+  └ 16 lines...
+
+Now let me look at these specific child terms to understand their definitions:
+
+● Get interatrial septum details (shell)
+  │ obo-grep.pl -r 'id: UBERON:0002085' src/ontology/uberon-edit.obo | head -30
+  └ 31 lines...
+
+Let me check out the key terms to examine them more closely:
+
+● Check out cardiac septum and related terms (shell)
+  │ obo-checkout.pl src/ontology/uberon-edit.obo UBERON:0002099 UBERON:0002085
+  │ UBERON:0002094 UBERON:0004142 UBERON:0005989 UBERON:0006207
+  └ 8 lines...
+
+Now let me view these terms to understand the hierarchy:
+
+● Read UBERON_0002099.obo
+  │ terms/UBERON_0002099.obo
+  └ 27 lines read
+
+● Read UBERON_0002085.obo
+  │ terms/UBERON_0002085.obo
+  └ 26 lines read
+
+● Read UBERON_0002094.obo
+  │ terms/UBERON_0002094.obo
+  └ 36 lines read
+
+● Read UBERON_0004142.obo
+  │ terms/UBERON_0004142.obo
+  └ 7 lines read
+
+● Read UBERON_0005989.obo
+  │ terms/UBERON_0005989.obo
+  └ 14 lines read
+
+● Read UBERON_0006207.obo
+  │ terms/UBERON_0006207.obo
+  └ 24 lines read
+
+Perfect! Now I can see the issue clearly. The current definition of cardiac septum states:
+
+"The thin membranous structure between the two heart atria or the thick muscular structure between the two heart ventricles."
+
+However, the child terms include:
+1. **interatrial septum** (UBERON:0002085) - between atria ✓
+2. **interventricular septum** (UBERON:0002094) - between ventricles ✓
+3. **atrioventricular septum** (UBERON:0005989) - between right atrium and left ventricle ✗
+4. **outflow tract septum** (UBERON:0004142) - in the outflow tract ✗
+5. **aortico-pulmonary spiral septum** (UBERON:0006207) - separates truncus arteriosus/outflow tract ✗
+
+The definition is indeed too narrow as it only mentions septa between atria or between ventricles, but doesn't cover atrioventricular septa or outflow tract septa.
+
+Let me now update the definition of cardiac septum:
+
+● Edit UBERON_0002099.obo +1 -1
+  └ terms/UBERON_0002099.obo
+
+Now let me add metadata about when this change was made and who requested it:
+
+● Edit UBERON_0002099.obo +2
+  └ terms/UBERON_0002099.obo
+
+Let me view the updated term to verify:
+
+● Read UBERON_0002099.obo
+  │ terms/UBERON_0002099.obo
+  └ 29 lines read
+
+Perfect! Now let me check the term back in:
+
+● Check in updated cardiac septum term (shell)
+  │ obo-checkin.pl src/ontology/uberon-edit.obo UBERON:0002099
+  └ 1 line...
+
+Now let me reserialize the ontology file:
+
+● Reserialize uberon-edit.obo (shell)
+  │ robot convert -i src/ontology/uberon-edit.obo -f obo -o
+  │ src/ontology/uberon-edit.obo
+  └ 1 line...
+
+Let me verify the change was correctly applied:
+
+● Verify the updated definition (shell)
+  │ obo-grep.pl -r 'id: UBERON:0002099' src/ontology/uberon-edit.obo | grep -A 5
+  │ 'name: cardiac septum'
+  └ 7 lines...
+
+Excellent! Now let me commit the changes:
+
+● Check the changes made (shell)
+  │ git diff src/ontology/uberon-edit.obo | head -50
+  └ 51 lines...
+
+Good! The changes look correct. Let me now commit them:
+
+● Commit the changes (shell)
+  │ git add src/ontology/uberon-edit.obo && git commit -m "Revise cardiac
+  │ septum definition to include all child terms
+  │
+  │ The previous definition was too narrow, only mentioning septa between
+  │ atria or between ventricles. However, child terms include:…
+  └ 14 lines...
+
+Perfect! Now let me create the required comment files:
+
+● Create ISSUE_COMMENTS.md +19
+
+● Create PR_COMMENTS.md +41
+
+Perfect! Let me verify the files were created correctly:
+
+● Read ISSUE_COMMENTS.md
+  └ 18 lines read
+
+● Read PR_COMMENTS.md
+  └ 40 lines read
+
+Excellent! Let me verify that the commit was made successfully and check the git log:
+
+● Verify commit (shell)
+  │ git log --oneline -1
+  └ 3 lines...
+
+
+You've hit your rate limit. Please wait for your limit to reset in 4 hours 42 minutes or switch to auto model to continue. Learn More (https://docs.github.com/copilot/concepts/rate-limits). (Request ID: 7009:3A3321:74AD261:7DB1433:6A03E462)
+
+Changes   +63 -1
+Requests  1 Premium (3m 44s)
+Tokens    ↑ 733.3k • ↓ 4.7k • 701.2k (cached)
