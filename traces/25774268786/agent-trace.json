@@ -1,0 +1,268 @@
+I'll help you address issue #3454. Let me start by reading the issue context to understand what needs to be done.
+
+● Read __issue_context__.json
+  └ 6 lines read
+
+Now I understand the issue. The terms introduced in PR #3445 have incorrect taxon constraints. They use `in_taxon` for both Astacidea and Brachyura, which violates the semantics of the relationship. The correct approach is to either:
+1. Use `present_in_taxon` if just documenting known occurrences, or
+2. Use `in_taxon` with the common parent taxon (Pleocyemata)
+
+Let me first check what terms were introduced in PR #3445 by searching for them.
+
+● Search for Astacidea (NCBITaxon_6712) references (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && obo-grep.pl -r
+  │ 'NCBITaxon_6712' src/ontology/uberon-edit.obo | head -50
+  └ 51 lines...
+
+Let me search more specifically for terms with these taxon IDs:
+
+● Search for both Astacidea and Brachyura taxon references (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && grep -n
+  │ "NCBITaxon_6712\|NCBITaxon_6752" src/ontology/uberon-edit.obo | head -100
+  └ 1 line...
+
+Let me search with obo-grep more specifically:
+
+● Search for Astacidea taxon with proper format (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && obo-grep.pl -r
+  │ 'NCBITaxon:6712' src/ontology/uberon-edit.obo 2>/dev/null | grep -A5 -B5
+  │ "^id:"
+  └ 160 lines...
+
+Perfect! I found all the affected terms. Let me continue to see if there are more:
+
+● Count total affected terms (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && obo-grep.pl -r
+  │ 'NCBITaxon:6712' src/ontology/uberon-edit.obo 2>/dev/null | grep "^id:" | wc
+  │ -l
+  └ 2 lines...
+
+Good, I found 15 terms. Let me also check for the parent stomatogastric nervous system term:
+
+● Check the stomatogastric nervous system term (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && obo-grep.pl -r 'id:
+  │ UBERON:8910000' src/ontology/uberon-edit.obo 2>/dev/null
+  └ 228 lines...
+
+Good! I can see that the parent term `UBERON:8910000` (stomatogastric nervous system) correctly uses `in_taxon NCBITaxon:6656 ! Arthropoda`, which is broader than the problematic dual assertions.
+
+Now I need to understand the correct fix. According to the issue:
+- The terms currently have both `in_taxon NCBITaxon:6712` (Astacidea) and `in_taxon NCBITaxon:6752` (Brachyura)
+- This violates taxon constraints because you can't have multiple `in_taxon` assertions
+- The solution is to use the common parent taxon Pleocyemata (NCBITaxon:6692)
+
+Let me verify the taxonomic relationship and get all affected term IDs:
+
+● Get list of all affected term IDs (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && obo-grep.pl -r
+  │ 'NCBITaxon:6712' src/ontology/uberon-edit.obo 2>/dev/null | grep "^id:" |
+  │ awk '{print $2}'
+  └ 16 lines...
+
+Perfect! Now I'll create a plan and fix these terms. The fix is to:
+1. Checkout each affected term
+2. Replace the two `in_taxon` relationships with a single one pointing to Pleocyemata (NCBITaxon:6692)
+3. Check the terms back in
+4. Reserialize the edit file
+5. Commit the changes
+
+Let me start by checking out all the affected terms in a batch:
+
+● Checkout all affected terms (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && obo-checkout.pl
+  │ src/ontology/uberon-edit.obo UBERON:8910001 UBERON:8910010 UBERON:8910011
+  │ UBERON:8910012 UBERON:8910013 UBERON:8910014 UBERON:8910015 UBERON:8910016
+  │ UBERON:8910017 UBERON:8910018 UBERON:8910019 UBERON:8910020 UBERON:8910021
+  │ UBERON:8910022 UBERON:8910023
+  └ 17 lines...
+
+Great! Now let me view one of the checked-out terms to see the current structure:
+
+● Read UBERON_8910001.obo
+  │ terms/UBERON_8910001.obo
+  └ 10 lines read
+
+Perfect! Now I need to edit all 15 terms to replace the two `in_taxon` lines with a single one for Pleocyemata. Let me do this systematically:
+
+● Edit UBERON_8910012.obo +1 -2
+  └ terms/UBERON_8910012.obo
+
+● Edit UBERON_8910010.obo +1 -2
+  └ terms/UBERON_8910010.obo
+
+● Edit UBERON_8910011.obo +1 -2
+  └ terms/UBERON_8910011.obo
+
+● Edit UBERON_8910014.obo +1 -2
+  └ terms/UBERON_8910014.obo
+
+● Edit UBERON_8910013.obo +1 -2
+  └ terms/UBERON_8910013.obo
+
+● Edit UBERON_8910017.obo +1 -2
+  └ terms/UBERON_8910017.obo
+
+● Edit UBERON_8910001.obo +1 -2
+  └ terms/UBERON_8910001.obo
+
+● Edit UBERON_8910015.obo +1 -2
+  └ terms/UBERON_8910015.obo
+
+● Edit UBERON_8910020.obo +1 -2
+  └ terms/UBERON_8910020.obo
+
+● Edit UBERON_8910016.obo +1 -2
+  └ terms/UBERON_8910016.obo
+
+● Edit UBERON_8910022.obo +1 -2
+  └ terms/UBERON_8910022.obo
+
+● Edit UBERON_8910023.obo +1 -2
+  └ terms/UBERON_8910023.obo
+
+● Edit UBERON_8910018.obo +1 -2
+  └ terms/UBERON_8910018.obo
+
+● Edit UBERON_8910021.obo +1 -2
+  └ terms/UBERON_8910021.obo
+
+● Edit UBERON_8910019.obo +1 -2
+  └ terms/UBERON_8910019.obo
+
+Excellent! All 15 terms have been edited. Now let me verify one to make sure the change is correct:
+
+● Read UBERON_8910001.obo
+  │ terms/UBERON_8910001.obo
+  └ 9 lines read
+
+Perfect! The change looks good. Now I need to check these terms back into the main edit file:
+
+● Check in all modified terms (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && obo-checkin.pl
+  │ src/ontology/uberon-edit.obo UBERON:8910001 UBERON:8910010 UBERON:8910011
+  │ UBERON:8910012 UBERON:8910013 UBERON:8910014 UBERON:8910015 UBERON:8910016
+  │ UBERON:8910017 UBERON:8910018 UBERON:8910019 UBERON:8910020 UBERON:8910021
+  │ UBERON:8910022 UBERON:8910023
+  └ 1 line...
+
+Good! Now I need to reserialize the edit file as per the guidelines:
+
+● Reserialize the edit file (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && robot convert -i
+  │ src/ontology/uberon-edit.obo -f obo -o src/ontology/uberon-edit.obo
+  └ 1 line...
+
+Great! Now let me verify that the changes were applied correctly by checking the edit file:
+
+● Verify changes in edit file (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && obo-grep.pl -r 'id:
+  │ UBERON:8910001' src/ontology/uberon-edit.obo 2>/dev/null | head -20
+  └ 21 lines...
+
+Let me search more specifically:
+
+● Check term in edit file (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && grep -A 10 "^id:
+  │ UBERON:8910001" src/ontology/uberon-edit.obo
+  └ 12 lines...
+
+Perfect! The change has been applied. Let me verify that the old taxon IDs are no longer present:
+
+● Verify old taxon IDs are gone (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && grep
+  │ "NCBITaxon:6712\|NCBITaxon:6752" src/ontology/uberon-edit.obo | wc -l
+  └ 2 lines...
+
+Excellent! Now let me verify that NCBITaxon:6692 (Pleocyemata) is present:
+
+● Verify new taxon ID is present (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && grep "NCBITaxon:6692"
+  │ src/ontology/uberon-edit.obo | wc -l
+  └ 2 lines...
+
+Perfect! All 15 terms now have the correct taxon constraint. Let me also verify that the checked-out term files have been removed from the terms/ directory:
+
+● Check if term files were removed (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && ls -la terms/ | grep
+  │ "8910" | wc -l
+  └ 2 lines...
+
+Great! The files have been checked back in and removed from the terms/ directory. Now let me commit these changes:
+
+● Create a new branch for the fix (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && git checkout -b
+  │ issue-3454
+  └ 2 lines...
+
+Now let me stage and commit the changes:
+
+● Stage the modified edit file (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && git add
+  │ src/ontology/uberon-edit.obo
+  └ 1 line...
+
+● Commit the changes (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && git commit -m "Fix
+  │ taxon constraints for crustacean stomatogastric terms
+  │
+  │ Replace dual in_taxon assertions (NCBITaxon:6712 Astacidea and
+  │ NCBITaxon:6752 Brachyura) with single in_taxon assertion for their common …
+  └ 33 lines...
+
+Perfect! The changes have been committed. Now let me create the ISSUE_COMMENTS.md and PR_COMMENTS.md files:
+
+● Create PR_COMMENTS.md +48
+
+● Create ISSUE_COMMENTS.md +6
+
+Perfect! Now let me verify the status of the repository to make sure everything is in order:
+
+● Check git status (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && git status
+  └ 17 lines...
+
+Excellent! The git status shows that:
+1. The changes to `src/ontology/uberon-edit.obo` have been committed
+2. The `ISSUE_COMMENTS.md` and `PR_COMMENTS.md` files are created but not committed (as requested)
+3. Other untracked files are system files that should not be committed
+
+Let me verify the commit one more time to make sure everything is correct:
+
+● Check the last commit (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && git log --oneline -1
+  └ 3 lines...
+
+Perfect! Let me also verify the diff to see exactly what changed:
+
+● Check the commit diff statistics (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && git diff HEAD~1 HEAD
+  │ --stat
+  └ 4 lines...
+
+Excellent! The statistics confirm:
+- 1 file changed (src/ontology/uberon-edit.obo)
+- 33 insertions (15 new `in_taxon NCBITaxon:6692` lines + related formatting)
+- 48 deletions (30 old `in_taxon` lines for the two taxa + related formatting)
+
+This makes sense: we removed 2 lines per term (30 lines total for 15 terms) and added 1 line per term (15 lines).
+
+Let me verify one more time by looking at a small snippet of the actual diff:
+
+● View sample of the changes (shell)
+  │ cd /__w/eval-ont-agent-uberon/eval-ont-agent-uberon && git show HEAD | grep
+  │ -A 3 -B 3 "in_taxon" | head -40
+  └ 40 lines...
+
+Perfect! I can see the changes clearly:
+- Removed: `relationship: in_taxon NCBITaxon:6712 ! Astacidea`
+- Removed: `relationship: in_taxon NCBITaxon:6752 ! Brachyura`
+- Added: `relationship: in_taxon NCBITaxon:6692`
+
+The diff also shows some minor reordering of relationships (robot convert reserializes the file), but the key change is the replacement of the dual taxon assertions with the single parent taxon.
+
+Let me create a final summary of what was done:
+
+
+Changes   +69 -30
+Requests  1 Premium (3m 53s)
+Tokens    ↑ 1.2m • ↓ 12.7k • 1.1m (cached)
