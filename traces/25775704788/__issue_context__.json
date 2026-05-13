@@ -1,0 +1,22 @@
+{
+  "body": "The term UBERON:0002346 \"neurectoderm\" also has a synonym \"neuroectoderm.\" However, neuroectoderm seems more common amongst the linked cross references, and I also see more results when exact searching Pubmed for neuroectoderm. Are there any reasons why neurectoderm is preferred by UBERON over neuroectoderm?\n\n\n\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd871r0pP",
+      "author": {
+        "login": "cmungall"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent please swap label and exact synonym, reference this issue\n\nalso please open an issue on the cell-ontology repo to make a corresponding change to any cl terms (you should find them yourself first to save the cl editors the work)",
+      "createdAt": "2026-03-24T22:44:47Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3682#issuecomment-4121905743",
+      "viewerDidAuthor": true
+    }
+  ],
+  "title": "UBERON:0002346 \"neurectoderm\" vs \"neuroectoderm\"",
+  "url": "https://github.com/obophenotype/uberon/issues/3682"
+}
