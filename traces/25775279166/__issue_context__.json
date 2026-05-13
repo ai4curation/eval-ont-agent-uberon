@@ -1,0 +1,22 @@
+{
+  "body": "**Uberon terms**\nUBERON:0009548 hepatic sinusoid of left of lobe of liver\nand \nUBERON:0009549 hepatic sinusoid of right of lobe of liver\n\n**Bug description**\nLabels should read \"hepatic sinusoid of left lobe of liver\" and \"hepatic sinusoid of right lobe of liver\" respectively.\n\nThanks,\n\nPaola\n\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd87MkCJB",
+      "author": {
+        "login": "dosumis"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent please fix.",
+      "createdAt": "2025-10-22T11:56:04Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3613#issuecomment-3431998017",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "Typos in labels of UBERON:0009548 and UBERON:0009549",
+  "url": "https://github.com/obophenotype/uberon/issues/3613"
+}
