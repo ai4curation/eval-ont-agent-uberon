@@ -1,0 +1,22 @@
+{
+  "body": "**Uberon term**\nUBERON:0000379 tracheal mucosa\n- UBERON:0001826 nasal cavity mucosa\n\n**Bug description**\n\nIntuitively, the parent-child relationship from Uberon shown below does not seem correct:\nUBERON:0000379 tracheal mucosa\n- UBERON:0001826 nasal cavity mucosa\n\n[Original issue from HumanDiseaseOntology](https://github.com/DiseaseOntology/HumanDiseaseOntology/issues/1541)",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd87Pc7AR",
+      "author": {
+        "login": "dosumis"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "Agreed.  Looks like this comes from inference.\n\n@dragon-ai-agent please fix by changing respiratory airway to trachea in this axiom:\n\nUBERON:0000379 tracheal mucosa\nEquivalent to\n([mucosa](https://www.ebi.ac.uk/ols4/ontologies/uberon/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FUBERON_0000344?lang=en) and [part of](https://www.ebi.ac.uk/ols4/ontologies/uberon/properties/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FBFO_0000050?lang=en) some [respiratory airway](https://www.ebi.ac.uk/ols4/ontologies/uberon/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FUBERON_0001005?lang=en))\n\nIf this doesn't fix, also check for hard coded UBERON:0001826 nasal cavity mucosa subclassOf UBERON:0000379 tracheal mucosa",
+      "createdAt": "2025-11-03T13:14:24Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3617#issuecomment-3480465425",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "Parent-child relationship between tracheal mucosa and nasal cavity mucosa",
+  "url": "https://github.com/obophenotype/uberon/issues/3617"
+}
