@@ -1,0 +1,163 @@
+I'll help you address issue #3446. Let me start by reading the issue context.
+
+● Read __issue_context__.json
+  └ 22 lines read
+
+Now let me search for relevant parent terms and understand the structure of prefrontal cortex in the ontology.
+
+● Search for prefrontal cortex term (shell)
+  │ obo-grep.pl -r 'id: UBERON:0000451' src/ontology/uberon-edit.obo
+  └ 242 lines...
+
+Now let me check the structure of other prefrontal cortex subdivisions to understand the pattern:
+
+● Search for existing prefrontal cortex subdivisions (shell)
+  │ obo-grep.pl -r 'prefrontal cortex' src/ontology/uberon-edit.obo | grep -A5
+  │ "^id: UBERON"
+  └ 112 lines...
+
+Let me check the Brodmann areas mentioned in the issue (BA12, BA25, BA32, BA33, BA24) to verify they exist:
+
+● Search for Brodmann areas mentioned in the issue (shell)
+  │ obo-grep.pl -r 'id: UBERON' src/ontology/uberon-edit.obo | grep -i
+  │ "brodmann.*\(area 12\|area 25\|area 32\|area 33\|area 24\)"
+  └ 31 lines...
+
+Now let me look for the actual IDs:
+
+● Get UBERON IDs for Brodmann areas (shell)
+  │ for area in 12 24 25 32 33; do echo "=== Area $area ===" && obo-grep.pl -r
+  │ "id: UBERON" src/ontology/uberon-edit.obo | grep -A1 "Brodmann.*area
+  │ ${area}$" | head -2; done
+  └ 16 lines...
+
+Let me get the exact UBERON IDs:
+
+● Get exact IDs for Brodmann areas (shell)
+  │ for area in 12 24 25 32 33; do obo-grep.pl -r "Brodmann.*area ${area}\""
+  │ src/ontology/uberon-edit.obo | grep "^id: UBERON" | head -1; done
+  └ 6 lines...
+
+Now let me check the anterior cingulate cortex:
+
+● Search for anterior cingulate cortex (shell)
+  │ obo-grep.pl -r 'anterior cingulate cortex' src/ontology/uberon-edit.obo |
+  │ grep -A2 "^id: UBERON" | head -10
+  └ 11 lines...
+
+Let me search more specifically:
+
+● Search for anterior cingulate terms (shell)
+  │ obo-grep.pl -r 'name: anterior cingulate' src/ontology/uberon-edit.obo
+  └ 251 lines...
+
+Good! Now I have enough information. Let me now get the ID for the regional part of brain:
+
+● Verify regional part of brain term (shell)
+  │ obo-grep.pl -r 'id: UBERON:0002616' src/ontology/uberon-edit.obo | head -5
+  └ 6 lines...
+
+Let me create a comprehensive plan for this task:
+
+● Todo added 4 items
+  │ Validate component terms exist
+  │ Create medial prefrontal cortex term
+  │ Validate the new term
+  └ Commit changes
+
+Now let me search for a free ID in the 99xxxxx range:
+
+● Find last used 99xxxxx ID (shell)
+  │ obo-grep.pl -r 'id: UBERON:99' src/ontology/uberon-edit.obo | tail -10
+  └ 10 lines...
+
+Let me find existing 99 IDs more directly:
+
+● Find recently used 99xxxxx IDs (shell)
+  │ grep "^id: UBERON:99" src/ontology/uberon-edit.obo | sort | tail -10
+  └ 1 line...
+
+Good, there are no 99xxxxx IDs in use yet. I'll use UBERON:9900001. Now let me create the new term. First, let me checkout a new file:
+
+● Create new term file for medial prefrontal cortex (shell)
+  │
+  │ cat > terms/UBERON_9900001.obo << 'EOF'
+  │ [Term]
+  │ id: UBERON:9900001
+  │ name: medial prefrontal cortex…
+  └ 27 lines...
+
+Let me create the terms directory first:
+
+● Create new term file for medial prefrontal cortex (shell)
+  │
+  │ mkdir -p terms
+  │ cat > terms/UBERON_9900001.obo << 'EOF'
+  │ [Term]
+  │ id: UBERON:9900001…
+  └ 40 lines...
+
+Now let me check in this term to the edit file:
+
+● Check in new term to edit file (shell)
+  │ obo-checkin.pl src/ontology/uberon-edit.obo UBERON:9900001
+  └ 1 line...
+
+Good! Now let me update the todo status and reserialize the file:
+
+✔ Todo completed create-new-term
+
+● Reserialize edit file with robot (shell)
+  │ robot convert -i src/ontology/uberon-edit.obo -f obo -o
+  │ src/ontology/uberon-edit.obo 2>&1
+  └ 1 line...
+
+Excellent! Now let me verify the term was added correctly:
+
+● Verify new term in edit file (shell)
+  │ obo-grep.pl -r 'id: UBERON:9900001' src/ontology/uberon-edit.obo
+  └ 231 lines...
+
+Perfect! The term has been added successfully. Now let me update todos and commit the changes:
+
+✔ Todo completed validate-term
+
+● Create new branch for issue 3446 (shell)
+  │ git checkout -b issue-3446 2>&1
+  └ 2 lines...
+
+Now let me commit the changes:
+
+● Commit new term (shell)
+  │ git add src/ontology/uberon-edit.obo && git commit -s -m "Add medial
+  │ prefrontal cortex term (UBERON:9900001)
+  │
+  │ Added new term for medial prefrontal cortex as requested in issue #3446.
+  │ The term is defined as a subdivision of the prefrontal cortex composed …
+  └ 19 lines...
+
+Now let me update the todo and create the comment files:
+
+✔ Todo completed commit-changes
+
+● Create ISSUE_COMMENTS.md +4
+
+Now let me create the PR_COMMENTS.md file:
+
+● Create PR_COMMENTS.md +47
+
+Perfect! Now let me verify all todos are complete:
+
+Excellent! All tasks are complete. Let me verify the commit was successful:
+
+● Verify commit and changes (shell)
+  │ git log --oneline -1 && echo "---" && git diff HEAD~1
+  │ src/ontology/uberon-edit.obo | grep -A20 "^\+\[Term\]" | head -25
+  └ 21 lines...
+
+Perfect! The work is complete. Let me create a final summary:
+
+
+Changes   +51 -0
+Requests  1 Premium (2m 41s)
+Tokens    ↑ 1.2m • ↓ 6.1k • 1.1m (cached)
