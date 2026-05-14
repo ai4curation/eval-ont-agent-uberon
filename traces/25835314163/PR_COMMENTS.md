@@ -1,0 +1,101 @@
+# Add tooth surface terms (issue #3583)
+
+Adds seven new tooth surface terms to UBERON in response to
+[issue #3583](https://github.com/obophenotype/uberon/issues/3583).
+
+## Terms added
+
+| ID | Name | Parent (is_a) |
+|----|------|---------------|
+| UBERON:9900001 | distal surface of tooth | anatomical surface (UBERON:0006984) |
+| UBERON:9900002 | incisal surface of tooth | anatomical surface (UBERON:0006984) |
+| UBERON:9900003 | lingual surface of tooth | anatomical surface (UBERON:0006984) |
+| UBERON:9900004 | mesial surface of tooth | anatomical surface (UBERON:0006984) |
+| UBERON:9900005 | facial surface of tooth | anatomical surface (UBERON:0006984) |
+| UBERON:9900006 | labial surface of tooth | facial surface of tooth (UBERON:9900005) |
+| UBERON:9900007 | buccal surface of tooth | facial surface of tooth (UBERON:9900005) |
+
+All terms also carry `part_of UBERON:0001091 ! calcareous tooth` and use a
+logical (genus–differentia) definition where appropriate.
+
+## Rationale
+
+- **Five terms (distal, mesial, incisal, lingual, labial)** are the original ask
+  in the issue, with definitions taken verbatim from the requester
+  (@aleixpuigb, ORCID 0000-0001-6677-8489).
+- **`facial surface of tooth`** was added per the discussion: @aleixpuigb asked
+  whether the facial surface should sit as a parent of labial / buccal, and
+  @wdduncan confirmed this is the right design. Its definition explicitly
+  spells out the labial+buccal grouping and notes the clinical "F" shorthand
+  convention.
+- **`buccal surface of tooth`** was added to balance the hierarchy: with
+  `facial` present, buccal is its natural sister class to labial.
+- **`facial surface` as a synonym of `labial surface of tooth`**: per
+  @wdduncan's comment, in clinical records "facial" is often used in place
+  of "labial" (so that single-letter abbreviations like MOD/F do not collide
+  with the "L" of lingual). Added as a RELATED synonym to capture this usage
+  without breaking the is_a hierarchy.
+
+## Design choices to flag
+
+1. **Genus is `anatomical surface` (UBERON:0006984), not `surface structure`
+   (UBERON:0003102).** The issue requested `surface structure`, but I went with
+   `anatomical surface` because:
+    - `anatomical surface` is defined as a 2D boundary between an anatomical
+      structure and its surroundings, which is a precise fit for the tooth
+      surfaces (which are named regions/faces of the tooth crown).
+    - `surface structure` is described as overlapping the outer epithelial
+      layer and being adjacent to the space surrounding the organism — a
+      better fit for skin features than for tooth crown faces.
+    - The existing UBERON term `surface of bone` (UBERON:4200230) uses
+      `anatomical surface` with `part_of <bone element>`, establishing a
+      precedent these new terms follow.
+   Happy to flip the genus to `surface structure` if reviewers prefer the
+   literal request.
+2. **No intermediate `tooth surface` grouping class.** I considered creating a
+   single `tooth surface` parent and hanging all seven new terms off it, but
+   chose not to add a class that wasn't requested. The logical definitions
+   (`anatomical surface` AND `part_of calcareous tooth`) recover the same
+   grouping under reasoning.
+3. **Did not add `occlusal`, `cervical`, or `apical` surfaces.** @aleixpuigb's
+   image referenced more surface terms; only the explicitly requested five (plus
+   the facial / buccal pair surfaced in the discussion) were added in this PR
+   to keep the scope tight. Easy to follow up with another PR if needed.
+4. **Definition xrefs.** Each definition cites both the issue
+   (`https://github.com/obophenotype/uberon/issues/3583`) and one of the two
+   reference URLs supplied by the requester
+   (`https://terminology.hl7.org/CodeSystem-FDI-surface.html` or
+   `https://dentaleducationhub.com/surfaces-of-the-teeth/`). No PMID was given
+   in the issue and I did not invent one.
+
+## Metadata
+
+Each new term carries the standard required metadata:
+
+- `relationship: dc-contributor https://orcid.org/0000-0001-6677-8489 ! Aleix Puig-Barbé`
+- `property_value: dcterms-date "2026-05-14T01:05:04Z" xsd:dateTime`
+- `property_value: term_tracker_item "https://github.com/obophenotype/uberon/issues/3583" xsd:anyURI`
+- `created_by: dragon-ai-agent`
+
+## Validation checklist
+
+- [x] Used `UBERON:99xxxxx` IDs for new terms (UBERON:9900001–9900007), with no
+      collisions in the existing edit file.
+- [x] Each term has a name, definition with xrefs, an is_a parent, and the
+      required contributor / date / tracker / created_by metadata.
+- [x] Each term is `part_of UBERON:0001091 ! calcareous tooth`.
+- [x] Logical (genus–differentia) definition added where it mirrors the text
+      definition.
+- [x] Edits made in `terms/` and checked in via `obo-checkin.pl`.
+- [x] `src/ontology/uberon-edit.obo` reserialised with `robot convert`.
+- [x] No relationship edits to obsolete terms; no obsoletions performed.
+
+Signed: @dragon-ai-agent
+
+---
+🤖 **Generated by claude agent**
+- Runtime: `claude`
+- Model: `claude-opus-4-7`
+- Agent config: `ai4curation/uberon-agent-config@v3:.`
+- Iteration: `1`
+- Run: [View workflow run](https://github.com/ai4curation/eval-ont-agent-uberon/actions/runs/25835314163)
