@@ -59,7 +59,7 @@ OBODATE ?=                  $(shell date +'%d:%m:%Y %H:%M')
 VERSION=                    $(TODAY)
 ANNOTATE_ONTOLOGY_VERSION = annotate -V $(ONTBASE)/releases/$(VERSION)/$@ --annotation owl:versionInfo $(VERSION)
 ANNOTATE_CONVERT_FILE =     annotate --ontology-iri $(ONTBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) convert -f ofn --output $@.tmp.owl && mv $@.tmp.owl $@
-OTHER_SRC =                 $(PATTERNDIR)/definitions.owl $(COMPONENTSDIR)/disjoint_union_over.owl $(COMPONENTSDIR)/mappings.owl $(COMPONENTSDIR)/in-subset.owl $(COMPONENTSDIR)/hra_subset.owl $(COMPONENTSDIR)/vasculature_class.owl $(COMPONENTSDIR)/hra_depiction_3d_images.owl 
+OTHER_SRC =                 $(PATTERNDIR)/definitions.owl $(COMPONENTSDIR)/disjoint_union_over.owl $(COMPONENTSDIR)/mappings.owl $(COMPONENTSDIR)/in-subset.owl $(COMPONENTSDIR)/hra_subset.owl $(COMPONENTSDIR)/hra_skeleton.owl $(COMPONENTSDIR)/vasculature_class.owl $(COMPONENTSDIR)/hra_depiction_3d_images.owl 
 ONTOLOGYTERMS =             $(TMPDIR)/ontologyterms.txt
 EDIT_PREPROCESSED =         $(TMPDIR)/$(ONT)-preprocess.owl
 
@@ -490,6 +490,7 @@ recreate-components:
 		--assume-new=$(TMPDIR)/stamp-component-mappings.owl \
 		--assume-new=$(TMPDIR)/stamp-component-in-subset.owl \
 		--assume-new=$(TMPDIR)/stamp-component-hra_subset.owl \
+		--assume-new=$(TMPDIR)/stamp-component-hra_skeleton.owl \
 		--assume-new=$(TMPDIR)/stamp-component-vasculature_class.owl \
 		--assume-new=$(TMPDIR)/stamp-component-hra_depiction_3d_images.owl \
 		COMP=true IMP=false MIR=true PAT=true all_components
@@ -500,6 +501,7 @@ no-mirror-recreate-components:
 		--assume-new=$(TMPDIR)/stamp-component-mappings.owl \
 		--assume-new=$(TMPDIR)/stamp-component-in-subset.owl \
 		--assume-new=$(TMPDIR)/stamp-component-hra_subset.owl \
+		--assume-new=$(TMPDIR)/stamp-component-hra_skeleton.owl \
 		--assume-new=$(TMPDIR)/stamp-component-vasculature_class.owl \
 		--assume-new=$(TMPDIR)/stamp-component-hra_depiction_3d_images.owl \
 		COMP=true IMP=false MIR=false PAT=true all_components
@@ -527,6 +529,13 @@ $(COMPONENTSDIR)/in-subset.owl: $(TEMPLATEDIR)/in-subset.template.tsv $(TMPDIR)/
 		 --template $(TEMPLATEDIR)/in-subset.template.tsv \
 		 $(ANNOTATE_CONVERT_FILE)
 .PRECIOUS: $(COMPONENTSDIR)/in-subset.owl
+
+$(COMPONENTSDIR)/hra_skeleton.owl: $(TEMPLATEDIR)/hra-skeleton.template.tsv $(TMPDIR)/stamp-component-hra_skeleton.owl
+	$(ROBOT) template  \
+		 --template $(TEMPLATEDIR)/hra-skeleton.template.tsv \
+		 --prefix "$(TEMPLATEDIR)/hra-skeleton-prefixes.owl" \
+		 $(ANNOTATE_CONVERT_FILE)
+.PRECIOUS: $(COMPONENTSDIR)/hra_skeleton.owl
 
 ifeq ($(MIR),true)
 .PHONY: component-download-hra_subset.owl
