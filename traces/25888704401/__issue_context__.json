@@ -1,0 +1,37 @@
+{
+  "body": "**Uberon term**\nUBERON:0001629\ncarotid body\n\n**Suggested revision and reasons**\n\nThe current parentage of this term indicate that it is part of \"common carotid artery plus branches\" (UBERON:0001530), which is incorrect. \n\nAccording to PMID:[32965908](https://pubmed.ncbi.nlm.nih.gov/32965908), and according to the current definition, \"carotid body is a sensory organ in the peripheral nervous system located in the adventitia of the bifurcation of the common carotid artery\". \nWhile the structure is \"adjacent to\", it is not \"part of: the  \"common carotid artery plus branches\" \n\nAccording to the information above, this term should be part of the peripheral nervous system.",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd869y9qu",
+      "author": {
+        "login": "cmungall"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent please fix this.",
+      "createdAt": "2025-08-13T14:50:21Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3591#issuecomment-3184253614",
+      "viewerDidAuthor": true
+    },
+    {
+      "id": "IC_kwDOAAidd869zF1K",
+      "author": {
+        "login": "dragon-ai-agent"
+      },
+      "authorAssociation": "COLLABORATOR",
+      "body": "## Issue Fixed ✅\n\nI have successfully reclassified the carotid body (UBERON:0001629) to correctly place it within the peripheral nervous system rather than the cardiovascular system.\n\n### Changes Made:\n- **Relationship corrected**: Removed \n- **New relationship**: Added  \n- **Evidence added**: Included PMID:32965908 reference to support the classification\n- **Issue tracking**: Added proper metadata linking to this issue (#3591)\n\n### Scientific Rationale:\nThe carotid body is functionally and developmentally a sensory organ of the peripheral nervous system. While anatomically located adjacent to the carotid artery bifurcation, it is not structurally part of the cardiovascular system. The previous classification was based on location rather than the organ's true biological function and developmental origin.\n\n### Next Steps:\n- **Pull Request**: #3594 is ready for review\n- **Branch**: \n- **Validation**: All ontology QA checks have passed\n\nThe fix ensures the carotid body is properly classified according to its role as a chemoreceptive sensory organ within the peripheral nervous system, as supported by the referenced literature.\n\n**@dragon-ai-agent**",
+      "createdAt": "2025-08-13T14:59:54Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3591#issuecomment-3184287050",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "\"carotid body\" should not be part of the cardiovascular system",
+  "url": "https://github.com/obophenotype/uberon/issues/3591"
+}
