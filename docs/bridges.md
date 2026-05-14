@@ -18,6 +18,10 @@ primordium](http://purl.obolibrary.org/obo/UBERON_0005564)
 of](http://purl.obolibrary.org/obo/BFO_0000050) a
 [Danio](http://purl.obolibrary.org/obo/NCBITaxon_7954) (NCBITaxon:7954).
 
+For life cycle and life cycle stage terms, the bridging axioms use [in
+taxon](http://purl.obolibrary.org/obo/RO_0002162) (RO:0002162) instead of
+part_of.
+
 Such a bridge may be used by anyone who wants to merge Uberon and ZFA to
 obtain an integrated ontology in which the _Danio_-specific terms in ZFA
 are properly linked to their taxon-neutral counterparts in Uberon.
@@ -83,7 +87,9 @@ declaration is as follows:
 and it indicates that any mapping between a Uberon term and a term from
 ZFA should result, when producing the bridge files, in a axiom that
 states that the ZFA term is equivalent to the intersection of the Uberon
-term and the existential restriction `part_of some Danio`.
+term and the existential restriction `part_of some Danio`. (Note: for
+life cycle and life cycle stage terms, the relation used is `in_taxon`
+instead of `part_of`.)
 
 Curators should not normally have to worry about declaring the prefixes
 of foreign ontologies that Uberon provides bridges for, unless they want
