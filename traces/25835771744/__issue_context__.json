@@ -1,0 +1,37 @@
+{
+  "body": "**Preferred term label:**\nsixth lumbar dorsal root ganglion\n\n**Synonyms**\n\n1. L6 dorsal root ganglion;  \n2.  sixth lumbar spinal ganglion \n\n**Definition (free text, please give PubMed ID)**\n\nThe group of nerve cell bodies located on the dorsal spinal roots within the vertebral column at the level of the sixth lumbar vertebra.\nPMID:18316160\n\n**Parent term (use https://www.ebi.ac.uk/ols/ontologies/uberon)**\n\nlumbar dorsal root ganglion (UBERON:0002836)\n\n**Your nano-attribution (ORCID)**\n\nORCID:0000-0002-8037-076X\n\n\n\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd87Pcuyq",
+      "author": {
+        "login": "dosumis"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent  - please add this term.\n\n(I have checked the paper and the def, all looks good).",
+      "createdAt": "2025-11-03T13:02:48Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3618#issuecomment-3480415402",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd87PdJYn",
+      "author": {
+        "login": "dosumis"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent please add this term.",
+      "createdAt": "2025-11-03T13:25:52Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3618#issuecomment-3480524327",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "sixth lumbar dorsal root ganglion",
+  "url": "https://github.com/obophenotype/uberon/issues/3618"
+}
