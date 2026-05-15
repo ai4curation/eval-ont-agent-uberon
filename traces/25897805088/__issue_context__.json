@@ -1,0 +1,37 @@
+{
+  "body": "**Preferred term label:**\nocclusal surface of tooth\n\n**Synonyms**\nchewing surface, masticatory surface\n\n**Definition (free text, please give PubMed ID)**\nA tooth surface structure that forms the chewing edge of premolar or molar tooth. It functions chew or grind food during biting.\nhttps://dentaleducationhub.com/surfaces-of-the-teeth/\nhttps://terminology.hl7.org/CodeSystem-FDI-surface.html\n\n**Parent term (use https://www.ebi.ac.uk/ols/ontologies/uberon)**\ntooth surface structure <http://purl.obolibrary.org/obo/UBERON_8600148>\n\n**Your nano-attribution (ORCID)**\nhttps://orcid.org/0000-0001-9625-1899\nhttps://orcid.org/0009-0002-7282-0836\n\ncc @finn1928\n\n@aleixpuigb sorry we forgot to include this one as well",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd87U3_ZQ",
+      "author": {
+        "login": "aleixpuigb"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "Ok, I will add and make an Uberon release, there hasn't been one in a long time. Thanks!",
+      "createdAt": "2025-11-24T15:39:58Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3631#issuecomment-3571447376",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd87U4Cdi",
+      "author": {
+        "login": "aleixpuigb"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent please add this anatomical structure.",
+      "createdAt": "2025-11-24T15:42:49Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3631#issuecomment-3571459938",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "NTR: occlusal surface of tooth",
+  "url": "https://github.com/obophenotype/uberon/issues/3631"
+}
