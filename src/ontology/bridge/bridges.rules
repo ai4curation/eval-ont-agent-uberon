@@ -24,11 +24,11 @@ prefix UBERON:    <http://purl.obolibrary.org/obo/UBERON_>
 
 # The relation to use in the existential restrictions between Uberon/CL
 # terms and their taxon-specific equivalents: part_of (BFO:0000050) for
-# most cases, except for life stage terms where we use occurs_in
-# (BFO:0000066) instead.
+# most cases, except for life stage terms where we use in taxon
+# (RO:0002162) instead.
 set_var("TAXREL", BFO:0000050);
-is_a(%{object_id}, UBERON:0000104) -> set_var("TAXREL", BFO:0000066);
-is_a(%{object_id}, UBERON:0000105) -> set_var("TAXREL", BFO:0000066);
+is_a(%{object_id}, UBERON:0000104) -> set_var("TAXREL", RO:0002162);
+is_a(%{object_id}, UBERON:0000105) -> set_var("TAXREL", RO:0002162);
 
 # Make sure UBERON and CL classes are on the object side.
 subject==UBERON:* || subject==CL:* -> invert();
