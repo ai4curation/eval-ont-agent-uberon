@@ -2,15 +2,16 @@
 # of XAO.
 prefix BFO:       <http://purl.obolibrary.org/obo/BFO_>
 prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_>
+prefix RO:        <http://purl.obolibrary.org/obo/RO_>
 prefix UBERON:    <http://purl.obolibrary.org/obo/UBERON_>
 prefix XAO:       <http://purl.obolibrary.org/obo/XAO_>
 
 declare(NCBITaxon:8353);
-declare(BFO:0000066, /type="object_property");
+declare(RO:0002162, /type="object_property");
 
 # Looking for any exact cross-species mapping between a Uberon term and
 # a XAO term below "Xenopus developmental stage" (XAO:1000000).
 subject==UBERON:* predicate==semapv:crossSpeciesExactMatch is_a(%{object_id}, XAO:1000000) -> {
     annotate(%{object_id}, IAO:0000589, "%{subject_label} (xenopus)");
-    create_axiom("%object_id EquivalentTo: %subject_id and (BFO:0000066 some NCBITaxon:8353)");
+    create_axiom("%object_id EquivalentTo: %subject_id and (RO:0002162 some NCBITaxon:8353)");
 }

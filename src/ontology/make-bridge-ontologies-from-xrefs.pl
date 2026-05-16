@@ -84,7 +84,7 @@ while (<>) {
                 elsif ($t eq 'gd') {
                     print $fh "intersection_of: $id ! $n\n";
                     if (exists($lsxrefs{$x})) {
-                        $rel = "occurs_in";
+                        $rel = "in_taxon";
                     }
                     print $fh "intersection_of: $rel $filler\n";
                 }
@@ -128,8 +128,8 @@ foreach my $s (keys %fhmap) {
     print $fh "id: develops_from\n";
     print $fh "xref: RO:0002225\n\n";
     print $fh "[Typedef]\n";
-    print $fh "id: occurs_in\n";
-    print $fh "xref: BFO:0000066\n\n";
+    print $fh "id: in_taxon\n";
+    print $fh "xref: RO:0002162\n\n";
 
     open(F,"ftr.obo");
     while(<F>) {
