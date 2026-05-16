@@ -1,0 +1,22 @@
+{
+  "body": "Below are suggestions for definitions for two terms that are currently undefined.\r\n\r\n**Uberon term**\r\n'insular cortex' http://purl.obolibrary.org/obo/UBERON_0034891\r\n\r\n**Suggested textual definition**\r\nThe insular cortex (also insula and insular lobe) is a portion of the cerebral cortex folded deep within the lateral sulcus (the fissure separating the temporal lobe from the parietal and frontal lobes) within each hemisphere of the mammalian brain. It is the primary gustatory cortex and is involved in sensorimotor and somatosensory as well as socioemotional functions.\r\nReferences: Wikipedia, MeSH\r\n\r\n\r\n**Uberon term**\r\n'Brodman (1909) area 9' http://purl.obolibrary.org/obo/UBERON_0013540\r\n\r\n**Suggested textual definition**\r\nBrodmann area 9, or BA9, refers to a cytoarchitecturally defined portion of the frontal cortex in the brain of humans and other primates. It contributes to the dorsolateral and medial prefrontal cortex and plays a role in executive functions such as working memory, planning, inhibition, decision-making, and reasoning. Its cytoarchitecture is referred to as granular due to the concentration of granule cells in layer IV. Its internal pyramidal layer (V) is divisible into two sublayers, an outer layer 5a of densely distributed medium-size ganglion cells that partially merges with layer IV, and an inner, clearer, cell-poor layer 5b; the pyramidal cells of sublayer 3b of the external pyramidal layer (III) are smaller and sparser in distribution; the external granular layer (II) is narrow, with small numbers of sparsely distributed granule cells. \r\nReference: Adapted from Wikipedia\r\n\r\nSumitted on behalf of Dana Gabuxda, https://orcid.org/0000-0002-4964-5083\r\n\r\nThis request is made as part of work on the SCORCH Project (Single Cell Opioid Response in the Context of HIV).",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd86oZEQ6",
+      "author": {
+        "login": "mgiglio99"
+      },
+      "authorAssociation": "NONE",
+      "body": "Looping in @JPReceveur who works on this project too.",
+      "createdAt": "2025-04-23T18:20:36Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3448#issuecomment-2825143354",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "two new defs for undefined terms",
+  "url": "https://github.com/obophenotype/uberon/issues/3448"
+}
