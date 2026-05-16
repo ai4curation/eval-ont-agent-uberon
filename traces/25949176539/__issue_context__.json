@@ -1,0 +1,89 @@
+{
+  "body": "**Preferred term labels:**\r\n- [x] antimesosalpinx #3420 \r\n\r\n- [ ] mesosalpinx epithelium\r\n- [ ] antimesosalpinx epithelium\r\n\r\n- [ ] mesosalpinx muscularus\r\n- [ ] antimesosalpinx muscularus\r\n\r\n**Synonyms**\r\nantimesosalpinx = posterior free edge of mesosalpinx\r\n\r\n**Definition (free text, please give PubMed ID)**\r\nantimesosalpinx is the posterior free edge of the mesosalpinx.\r\n\r\nmesosalpinx epithelium is composed of simple squamous epithelium that forms the outer layer of the mesosalpinx.\r\n\r\nmesosalpinx muscularus The muscular layer (myosalpinx or tunica muscularis) consists primarily of an inner layer of circularly arranged muscle fibers covered by an outer layer of longitudinally oriented fibers. These longitudinally arranged fibers are continuous with the smooth muscle present in the mesosalpinx.\r\n\r\n**possible source of images for entries**\r\nhttps://www.pathologyoutlines.com/topic/fallopiantubesnormal.html\r\n\r\n**Parent term (use https://www.ebi.ac.uk/ols/ontologies/uberon)**\r\nmesosalpinx UBERON:0012331 http://purl.obolibrary.org/obo/UBERON_0012331\r\n\r\n**Your nano-attribution (ORCID)**\r\n0000-0001-7655-4833\r\n\r\n\r\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd86Tl09T",
+      "author": {
+        "login": "aleixpuigb"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "> mesosalpinx muscularus\r\n\r\nI suspect that this structure might be referring to the [myosalpinx](https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/mesosalpinx#:~:text=Myosalpinx,al.%2C%202015).), or tunica muscularis. If it is the case, it is a separate layer than the mesosalpinx, and therefore it wouldn't need a term for antimesosalpinx muscularis. I don't think that the mesosalpinx have a muscular layer.",
+      "createdAt": "2024-11-14T11:58:56Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3414#issuecomment-2476166995",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86VE9w_",
+      "author": {
+        "login": "emquardokus"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@aleixpuigb from fallopian tube experts for ontology placement: \r\nBegin forwarded message:\r\n\r\nFrom: \"Nordgren, C. Erik\" <nordgren@sas.upenn.edu>\r\nSubject: Re: Fallopian tube cell type ontology\r\nDate: November 26, 2024 at 10:11:13 AM EST\r\nTo: \"Quardokus, Ellen M\" <ellenmq@iu.edu>, Aleix Puig <aleix@ebi.ac.uk>\r\nCc: \"Fisher, Stephen A\" <safisher@sas.upenn.edu>, Kate O'Neill <Kathleen.O'neill2@pennmedicine.upenn.edu>, \"Kuang, Da\" <kuangda@seas.upenn.edu>\r\n\r\nHi Ellen & Aleix,\r\n\r\nHaving consulted further with Kate, I wanted to get back to you with more specificity on the placement of the new functional tissue unit ontological terms we need added for Fallopian tube.\r\n\r\nSo, under \"muscle layer of oviduct\", should be placed:\r\nmesosalpinx muscularus\r\nantimesosalpinx muscularus\r\n\r\nAnd under \"mucosa of fallopian tube\", should be placed:\r\nmesosalpinx epithelium\r\nantimesosalpinx epithelium\r\nAll of these terms would of course apply to both the left and right organs.\r\nDoes that give you what you need, in order to have these new terms added and published?\r\nErik\r\n",
+      "createdAt": "2024-11-26T15:17:24Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [
+        {
+          "content": "THUMBS_UP",
+          "users": {
+            "totalCount": 1
+          }
+        }
+      ],
+      "url": "https://github.com/obophenotype/uberon/issues/3414#issuecomment-2501106751",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86VFCJr",
+      "author": {
+        "login": "emquardokus"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "\r\n\r\n\r\n\r\n> > mesosalpinx muscularus\r\n> \r\n> I suspect that this structure might be referring to the [myosalpinx](https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/mesosalpinx#:~:text=Myosalpinx,al.%2C%202015).), or tunica muscularis. If it is the case, it is a separate layer than the mesosalpinx, and therefore it wouldn't need a term for antimesosalpinx muscularis. I don't think that the mesosalpinx have a muscular layer.\r\n\r\n@aleixpuigb please see the extra info provided by fallopian tube experts in previous comment.",
+      "createdAt": "2024-11-26T15:21:11Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3414#issuecomment-2501124715",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86VGFBh",
+      "author": {
+        "login": "chucknordy"
+      },
+      "authorAssociation": "NONE",
+      "body": "Thanks for your work on this!",
+      "createdAt": "2024-11-26T16:50:48Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3414#issuecomment-2501398625",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86eUYdZ",
+      "author": {
+        "login": "aleixpuigb"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "After discussing with SMEs, we need 8 new terms:\n- [ ] mesosalpinx epithelium\n- [ ] antimesosalpinx epithelium\n- [ ] mesosalpinx muscularus\n- [ ] antimesosalpinx muscularus\n- [ ] superior epithelium\n- [ ] inferior epithelium\n- [ ] superior muscularus\n- [ ] inferior muscularus\n\nThe mesosalpinx, antimesosalping, superior and inferior only makes reference to the region (polarity) in the muscular layer or epithelium of the fallopian tube, but they are not part of the mesosalpinx or antimesosalpinx.",
+      "createdAt": "2025-02-13T10:23:22Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3414#issuecomment-2656143193",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "NTR: broad ligament regions supporting fallopian tube & tissue layer addition",
+  "url": "https://github.com/obophenotype/uberon/issues/3414"
+}
