@@ -950,6 +950,10 @@ id: UBERON:0006770 ! apophysis
 disjoint_from: FBbt:00005813 ! apophysis
 disjoint_from: HAO:0000143 ! apophysis
 
+[Term]
+id: UBERON:0000468 ! multicellular organism
+disjoint_from: UBERON:0000463 ! organism substance
+
 [Typedef]
 id: foaf-homepage
 name: homepage
