@@ -1,0 +1,67 @@
+{
+  "body": "**Uberon term**\n[life cycle](http://purl.obolibrary.org/obo/UBERON_0000104)\n[life cycle stage](http://purl.obolibrary.org/obo/UBERON_0000105)\n\n**Suggested revision and reasons**\nCOB had a discussion about various occurrent subclasses such as UBERON's 'life cycle', and the suggestion for COB compatibility was to move 'life cycle' and 'life cycle stage' from its current \"processual entity\" parent to be under \"process\" instead, thus helping eliminate \"occurent\" class in COB integrated ontologies.\n\nI see however COB still needs to find a home for [life cycle temporal boundary](http://purl.obolibrary.org/obo/UBERON_0035943) .  I think COB needs to recognize use of some OWLTime classes directly, where this would find a home, or indirectly by importing BFO \"temporal region\" as well. \n\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd86a7BG4",
+      "author": {
+        "login": "cmungall"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "Do you want to make a COB ticket or place alongside this?\n \n- https://github.com/OBOFoundry/COB/issues/40\n\nI don't think Uberon cares about upper level representation of this, we have 3 terms that appear to be useless vestiges of the heady days of over-formalization:\n\n* [] UBERON:0000000 ! processual entity \"An occurrent [span:Occurrent] that exists in time by occurring or happening, has temporal parts and always involves and depends on some entity.\"\n    * [i] **UBERON:0035943 ! life cycle temporal boundary \"A temporal boundary connecting two life cycle stages that follow in immediate succession. A temporal boundary is an abstract, instantaneous entity.\"**\n        * [i] UBERON:0035946 ! start of neonate stage \"A life cycle temporal boundary that marks the start of the neonate stage of the organism.\"\n        * [i] UBERON:0035945 ! start of life cycle \"A life cycle temporal boundary that marks the start of the life cycle of the organism.\"\n        * [i] UBERON:0035944 ! life-death temporal boundary \"A life cycle temporal boundary that marks the end of the life cycle of the organism.\"\n\nthese strange sounding terms might be better colloquially called conception, birth, death. IMO 0D is overmodeling, we are better just treating these concepts analogous to how we treat 3D boundaries in uberon, as actually having some extent, albeit minimal",
+      "createdAt": "2025-01-17T20:47:18Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3464#issuecomment-2599162296",
+      "viewerDidAuthor": true
+    },
+    {
+      "id": "IC_kwDOAAidd86d4CsD",
+      "author": {
+        "login": "gouttegd"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "> we have 3 terms that appear to be useless vestiges of the heady days of over-formalisation […] these strange sounding terms might be better colloquially called conception, birth, death. IMO 0D is overmodeling, we are better just treating these concepts analogous to how we treat 3D boundaries in uberon, as actually having some extent, albeit minimal\n\nMight be worth noting also that unless I am missing something, neither '[life cycle temporal boundary](http://purl.obolibrary.org/obo/UBERON_0035943)' nor any of its 3 children are actually _used_ anywhere within Uberon. They are also _not_ used by any of [the taxon-specific life-stage ontologies](https://github.com/obophenotype/developmental-stage-ontologies).",
+      "createdAt": "2025-02-10T17:13:15Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3464#issuecomment-2648713987",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd869FdRu",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "CONTRIBUTOR",
+      "body": "This issue has not seen any activity in the past 6 months; it will be closed automatically one year from now if no action is taken.",
+      "createdAt": "2025-08-10T03:01:35Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3464#issuecomment-3172324462",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd869QqZ5",
+      "author": {
+        "login": "cmungall"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "We should hopefully reach resolution soon on the linked ticket then I think\r\nwe can close this?\r\n\r\nOn Sat, Aug 9, 2025 at 8:01 PM github-actions[bot] ***@***.***>\r\nwrote:\r\n\r\n> *github-actions[bot]* left a comment (obophenotype/uberon#3464)\r\n> <https://github.com/obophenotype/uberon/issues/3464#issuecomment-3172324462>\r\n>\r\n> This issue has not seen any activity in the past 6 months; it will be\r\n> closed automatically one year from now if no action is taken.\r\n>\r\n> —\r\n> Reply to this email directly, view it on GitHub\r\n> <https://github.com/obophenotype/uberon/issues/3464#issuecomment-3172324462>,\r\n> or unsubscribe\r\n> <https://github.com/notifications/unsubscribe-auth/AAAMMONLYCMBUBVUT4RQE5L3M2Y2JAVCNFSM6AAAAABVMMR3KOVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZTCNZSGMZDINBWGI>\r\n> .\r\n> You are receiving this because you commented.Message ID:\r\n> ***@***.***>\r\n>\r\n",
+      "createdAt": "2025-08-11T15:00:40Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3464#issuecomment-3175261817",
+      "viewerDidAuthor": true
+    }
+  ],
+  "title": "Positioning 'life cycle' and 'life cycle stage' under 'process'",
+  "url": "https://github.com/obophenotype/uberon/issues/3464"
+}
