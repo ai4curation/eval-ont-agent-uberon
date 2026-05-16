@@ -1,0 +1,37 @@
+{
+  "body": "**Preferred term label:**\ndistal surface of tooth\nincisal surface of tooth\nlabial surface of tooth\nlingual surface of tooth\nmesial surface of tooth\n\n**Definition (free text, please give PubMed ID)**\ndistal surface of tooth\nA tooth surface that is oriented away from the median plane of the dental arch or oral cavity.\n\nincisal surface of tooth\nA tooth surface that forms the cutting edge of an incisor or canine tooth. It functions to shear or incise food during biting.\n\nlabial surface of tooth\nA tooth surface that faces the lips.\nComment: The term labial surface is usually used for surfaces of incisors and canines that are present just adjacent to the lips.\n\nlingual surface of tooth\nA tooth surface that faces the tongue or its anatomical equivalent. \n\nmesial surface of tooth\nA tooth surface that is oriented toward the median plane of the dental arch.\n\nReferences:\nhttps://terminology.hl7.org/CodeSystem-FDI-surface.html\nhttps://dentaleducationhub.com/surfaces-of-the-teeth/\n\n\n**Parent term (use https://www.ebi.ac.uk/ols/ontologies/uberon)**\n‘[surface structure](http://purl.obolibrary.org/obo/UBERON_0003102)’\n\n**Your nano-attribution (ORCID)**\nhttps://orcid.org/0000-0001-6677-8489\n\n\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd862faYv",
+      "author": {
+        "login": "aleixpuigb"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "Hi @wdduncan, these are the 5 terms that we discussed.\nSome notes to consider:\nIn this [reference](https://dentaleducationhub.com/surfaces-of-the-teeth/), the term 'facial surface' could be a parental term for 'buccal surface' and 'labial surface'. Of those, only labial has been requested, but I think it would be good to add the other two terms. \nIn a similar note, not all the teeth have all these surfaces. Is there any other surface that you would like to request from the list (image from the reference)?\n\n<img width=\"500\" height=\"285\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/bcd98def-a0d2-4db4-bb61-7d6d13c5b686\" />",
+      "createdAt": "2025-07-11T10:23:10Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3583#issuecomment-3061687855",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd862ftsb",
+      "author": {
+        "login": "wdduncan"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "Hi @aleixpuigb. Yes, the facial surface is often used to refer to either the buccal or labial surface. In electronic dental records, facial often refers to the labial surface. The reason for this (I believe) because of tooth surfaces are referenced using the first letter of the surface. For example, if you have the have filling in the mesial, occlusal, and surfaces on a tooth, in the health record this recorded as \"MOD\". This creates a problem for distinguishing between the labial and lingual surfaces (each begin with 'L'). So, 'F' (for facial) is used instead.\n\nIMHO, have the facial surface as a parent of the labial and buccal surfaces is fine. However, I would create a synonym for relating the labial surface to the facial surface. Perhaps 'has close synonym' is best.",
+      "createdAt": "2025-07-11T10:47:10Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3583#issuecomment-3061766939",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "New terms for tooth surfaces",
+  "url": "https://github.com/obophenotype/uberon/issues/3583"
+}
