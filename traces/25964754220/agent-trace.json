@@ -1,0 +1,5 @@
+Performing one time database migration, may take a few minutes...
+sqlite-migration:done
+Database migration complete.
+{"type":"error","timestamp":1778942792633,"sessionID":"ses_1cebf2d3dffegtzZccFDDPi6ab","error":{"name":"UnknownError","data":{"message":"Model not found: gpt-5.5/."}}}
+{"type":"error","timestamp":1778942792634,"sessionID":"ses_1cebf2d3dffegtzZccFDDPi6ab","error":{"name":"UnknownError","data":{"message":"Unexpected server error. Check server logs for details."}}}
