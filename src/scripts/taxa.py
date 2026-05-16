@@ -15,7 +15,7 @@
 # label: <human-readable suffix to append to term labels>
 # compositing:
 #   unfold_over: <list of properties to unfold tax-specific terms over
-#                (defaults to BFO:0000050, BFO:0000066)>
+#                (defaults to BFO:0000050, RO:0002162)>
 #   preserve: <list of properties that should be preserved when unfolding>
 # bridging:
 #   - prefix: <prefix of taxon-specific terms>
@@ -92,7 +92,7 @@ def process_rule_file(filein, fileout, taxa):
 
 def generate_merge_table(fileout, taxa):
     """Generates a batch-file for uberon:merge-species."""
-    def_link_properties = taxa.get('defaults', {}).get('compositing', {}).get('unfold_over', ['BFO:0000050', 'BFO:0000066'])
+    def_link_properties = taxa.get('defaults', {}).get('compositing', {}).get('unfold_over', ['BFO:0000050', 'RO:0002162'])
     def_preserved_properties = taxa.get('defaults', {}).get('compositing', {}).get('preserve', [])
 
     for taxon in taxa['species']:
