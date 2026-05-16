@@ -1,0 +1,23 @@
+{
+  "run_id": 25949197581,
+  "repo": "ai4curation/eval-ont-agent-uberon",
+  "workflow": "Evaluate an agent on an issue",
+  "inputs": {
+    "issue_repo": "obophenotype/uberon",
+    "issue_number": "3625",
+    "pr_number": "3626",
+    "model": "gpt-5.4",
+    "agent_config_repo": "ai4curation/uberon-agent-config",
+    "agent_config_tag": "v3",
+    "agent_config_directory": ".",
+    "iter_num": "1",
+    "repo_url_prefix": "https://href.li/?",
+    "create_pr": "true",
+    "force_new_branch": "true"
+  },
+  "branch": "scribe-v1-ai4curation-uberon-agent-config-v3-.-gpt-5.4-iter1-issue-3625",
+  "created_pr_number": "393",
+  "created_pr_url": "https://github.com/ai4curation/eval-ont-agent-uberon/pull/393",
+  "original_issue_url": "https://github.com/obophenotype/uberon/issues/3625",
+  "original_pr_url": "https://github.com/obophenotype/uberon/pull/3626"
+}
