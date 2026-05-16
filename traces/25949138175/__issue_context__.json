@@ -1,0 +1,52 @@
+{
+  "body": "(This question was first raised in the [developmental stage ontologies](https://github.com/obophenotype/developmental-stage-ontologies/pull/102#discussion_r1799308335) repo, but as a side remark on a PR. It deserves its own discussion.)\r\n\r\nPart of the steps that are needed to build Composite Metazoan is to create “bridging axioms” that link the taxon-neutral terms in Uberon to their taxon-specific counterparts in the the taxon-specific ontologies (FBbt, FBdv, WBbt, XAO, etc.).\r\n\r\nFor almost all terms, that link is of the form:\r\n\r\n> {taxon-specific term} **EquivalentTo:** {Uberon term} _and_ ('part of' _some_ {taxon ID})\r\n\r\nBut for the terms that represent life stages (specifically '[life cycle](http://purl.obolibrary.org/obo/UBERON_0000104)' and '[life cycle stage](http://purl.obolibrary.org/obo/UBERON_0000105)' and their descendants), the links can use two distinct relations depending on where the bridging axioms are generated.\r\n\r\nFor the bridging axioms that are generated in the [life stage ontologies](https://github.com/obophenotype/developmental-stage-ontologies/) repository, they are of the same form as above (in particular, they use the same `part of` relation).\r\n\r\nBut for the bridging axioms that are generated in Uberon (typically, those are the bridges that link to externally maintained, taxon-specific life stage ontologies like FBdv or WBls), the links are of the form\r\n\r\n> {taxon-specific term} **EquivalentTo:** {Uberon term} _and_ ('occurs in' _some_ {taxon ID})\r\n\r\nwhere `occurs in` is [BFO:0000066](http://purl.obolibrary.org/obo/BFO_0000066).\r\n\r\nIt cannot be good that the relations used in those bridging axioms vary depending on the species (e.g. `occurs in` for _Drosophila melanogaster_, `part of` for _Gorilla gorilla_). Whatever relation is used, it should be the same for all species.",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd86Sn3ix",
+      "author": {
+        "login": "gouttegd"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@cmungall Two years ago you [suggested](https://github.com/obophenotype/uberon/issues/2428#issuecomment-1103321518) that all links between Uberon terms and taxon-specific terms should take the form of two axioms:\r\n\r\n> {taxon-specific term} **EquivalentTo:** {Uberon term} **and** ('in taxon' _some_ {taxon ID})\r\n> {taxon-specific term} **SubClassOf:** ({relation} _some_ {taxon ID})\r\n\r\nwhere _relation_ would be 'part of' for continuants and 'occurs in' for occurrents. Is that still what you think?",
+      "createdAt": "2024-11-06T14:37:11Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3409#issuecomment-2459924657",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86a5ya5",
+      "author": {
+        "login": "ddooley"
+      },
+      "authorAssociation": "NONE",
+      "body": "I think 'in taxon' is the recommended relation now for attaching a life cycle to an (NCBITaxon) taxon class.  'in taxon' has no restriction on its domain.  (COB is moving to have life cycle be a subclass of process BTW).",
+      "createdAt": "2025-01-17T17:21:44Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3409#issuecomment-2598839993",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd86a8DmS",
+      "author": {
+        "login": "uberon"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "yes, in-taxon\r\n\r\nOn Fri, Jan 17, 2025 at 9:22 AM Damion Dooley ***@***.***>\r\nwrote:\r\n\r\n> I think 'in taxon' is the recommended relation now for attaching a life\r\n> cycle to an (NCBITaxon) taxon class.\r\n>\r\n> —\r\n> Reply to this email directly, view it on GitHub\r\n> <https://github.com/obophenotype/uberon/issues/3409#issuecomment-2598839993>,\r\n> or unsubscribe\r\n> <https://github.com/notifications/unsubscribe-auth/AAGZRCGZDF7LSH3LC5KKGJL2LE337AVCNFSM6AAAAABRISBU3CVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZDKOJYHAZTSOJZGM>\r\n> .\r\n> You are receiving this because you are subscribed to this thread.Message\r\n> ID: ***@***.***>\r\n>\r\n",
+      "createdAt": "2025-01-18T00:56:03Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3409#issuecomment-2599434642",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "What relation should link a life stage term to its taxon-specific counterpart?",
+  "url": "https://github.com/obophenotype/uberon/issues/3409"
+}
