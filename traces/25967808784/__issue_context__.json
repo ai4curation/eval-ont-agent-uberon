@@ -1,0 +1,157 @@
+{
+  "body": "It came up in discussion with @cmungall  that currently there is no disjunction between multicellular organism and organism substance.  Since NCBITaxon terms correspond to multicellular organisms, someone can define a 'human milk'[edit] as an axiom like:\r\n\r\n'human milk': equivalentTo 'milk and 'Homo Sapiens'\r\n\r\nand not get a logical contradiction.\r\n\r\n**Suggested revision of logical definition**\r\n\r\nCan we make multicellular organism and organism substance disjoint to trigger unsatisfiability?\r\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd85CcDzn",
+      "author": {
+        "login": "shawntanzk"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "added to uberon agenda, will assign you",
+      "createdAt": "2022-05-02T09:15:19Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/2421#issuecomment-1114651879",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd85FmNI5",
+      "author": {
+        "login": ""
+      },
+      "authorAssociation": "NONE",
+      "body": "@ddooley, can you advise what is the ultimate goal that you would like to achieve? By making disjoint as you mention above, there is concern this would cause downstream issues. There are concerns with scope related to food (FoodOn) vs anatomy terms (Uberon).",
+      "createdAt": "2022-06-27T17:23:05Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/2421#issuecomment-1167643193",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd85Fmayj",
+      "author": {
+        "login": "ddooley"
+      },
+      "authorAssociation": "NONE",
+      "body": "I think it's a basic quality control check - a distinction between a whole, and a proper part.  We need to know which references point to whole organisms, and which do not. One should not be confused with the other, so this would trip an error if that happened in UBERON or someone's reuse of it.\r\n\r\nHowever, do things get complicated if, as Chris told me, a reference to an UBERON part, such as heart, logically entails connection to some whole organism in an abstract (dead or alive) sense? I really need an answer to that question - in FoodOn we need to be able to talk about a separated (severed / butchered) heart, one that does not entail a whole connected organism.\r\n",
+      "createdAt": "2022-06-27T18:08:15Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/2421#issuecomment-1167699107",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd85Fmsd7",
+      "author": {
+        "login": "cmungall"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "Let's keep this issues separate\r\n\r\nThis issue is about the request to make substance and organism disjoint. This is completely reasonable and straightforward. I am surprised we don't have this already, actually.\r\n\r\nI don't think there are any concerns. I can't think of any exceptions. there are no organisms made of gas, liquid or other substances created by the body. even an ingested animal ceases at some point to become a multicellular organism and is broken down into substances.\r\n\r\nNote that X disjoint with Y simply means there is nothing that instantiates X and Y. There are no further entailments to do with connectedness or parthood.\r\n\r\nWe already have other issues for the butchered heart use case, but that is completely separate. I think we should grant this request, close this issue, and continue discussing butchered hearts on the other tickets",
+      "createdAt": "2022-06-27T19:11:04Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/2421#issuecomment-1167771515",
+      "viewerDidAuthor": true
+    },
+    {
+      "id": "IC_kwDOAAidd85RWWgb",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "CONTRIBUTOR",
+      "body": "This issue has not seen any activity in the past 6 months; it will be closed automatically one year from now if no action is taken.",
+      "createdAt": "2022-12-26T02:10:00Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/2421#issuecomment-1364813851",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd85RZBaU",
+      "author": {
+        "login": "ddooley"
+      },
+      "authorAssociation": "NONE",
+      "body": "So I should do an UBERON pull request with the disjoint axiom?",
+      "createdAt": "2022-12-27T00:05:28Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/2421#issuecomment-1365513876",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd85epi3r",
+      "author": {
+        "login": "ddooley"
+      },
+      "authorAssociation": "NONE",
+      "body": "I realize now I don't know how to curate UBERON. Is it the root /uberon.obo file one would edit for disjoints?  I tried to edit and save via Protege, but it reported a \"multiple def tags not allowed\" issue which suggests Uberon team is using some other editor, or text edit?",
+      "createdAt": "2023-06-12T19:28:54Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/2421#issuecomment-1587949035",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd85esUEz",
+      "author": {
+        "login": "anitacaron"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@ddooley, the edit file is at `src/ontology/uberon-edit.obo`. But the disjoint file is at `src/ontology/components/external-disjoints.obo`",
+      "createdAt": "2023-06-13T07:07:54Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/2421#issuecomment-1588674867",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd85uOJ_V",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "CONTRIBUTOR",
+      "body": "This issue has not seen any activity in the past 6 months; it will be closed automatically one year from now if no action is taken.",
+      "createdAt": "2023-12-11T01:54:10Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/2421#issuecomment-1849204693",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd85uk0uH",
+      "author": {
+        "login": "ddooley"
+      },
+      "authorAssociation": "NONE",
+      "body": "I've added the axiom to src/ontology/components/external-disjoints.obo and made a pull request!",
+      "createdAt": "2023-12-14T05:16:56Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/2421#issuecomment-1855146887",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "multicellular organism and organism substance should be disjoint",
+  "url": "https://github.com/obophenotype/uberon/issues/2421"
+}
