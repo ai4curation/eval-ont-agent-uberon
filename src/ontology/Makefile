@@ -59,7 +59,7 @@ OBODATE ?=                  $(shell date +'%d:%m:%Y %H:%M')
 VERSION=                    $(TODAY)
 ANNOTATE_ONTOLOGY_VERSION = annotate -V $(ONTBASE)/releases/$(VERSION)/$@ --annotation owl:versionInfo $(VERSION)
 ANNOTATE_CONVERT_FILE =     annotate --ontology-iri $(ONTBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) convert -f ofn --output $@.tmp.owl && mv $@.tmp.owl $@
-OTHER_SRC =                 $(PATTERNDIR)/definitions.owl $(COMPONENTSDIR)/disjoint_union_over.owl $(COMPONENTSDIR)/mappings.owl $(COMPONENTSDIR)/in-subset.owl $(COMPONENTSDIR)/hra_subset.owl $(COMPONENTSDIR)/vasculature_class.owl $(COMPONENTSDIR)/hra_depiction_3d_images.owl 
+OTHER_SRC =                 $(PATTERNDIR)/definitions.owl $(COMPONENTSDIR)/disjoint_union_over.owl $(COMPONENTSDIR)/mappings.owl $(COMPONENTSDIR)/in-subset.owl $(COMPONENTSDIR)/hra_subset.owl $(COMPONENTSDIR)/vasculature_class.owl $(COMPONENTSDIR)/hra_depiction_3d_images.owl $(COMPONENTSDIR)/hra_skeleton.owl
 ONTOLOGYTERMS =             $(TMPDIR)/ontologyterms.txt
 EDIT_PREPROCESSED =         $(TMPDIR)/$(ONT)-preprocess.owl
 
@@ -492,6 +492,7 @@ recreate-components:
 		--assume-new=$(TMPDIR)/stamp-component-hra_subset.owl \
 		--assume-new=$(TMPDIR)/stamp-component-vasculature_class.owl \
 		--assume-new=$(TMPDIR)/stamp-component-hra_depiction_3d_images.owl \
+		--assume-new=$(TMPDIR)/stamp-component-hra_skeleton.owl \
 		COMP=true IMP=false MIR=true PAT=true all_components
 
 .PHONY: no-mirror-recreate-components
@@ -502,6 +503,7 @@ no-mirror-recreate-components:
 		--assume-new=$(TMPDIR)/stamp-component-hra_subset.owl \
 		--assume-new=$(TMPDIR)/stamp-component-vasculature_class.owl \
 		--assume-new=$(TMPDIR)/stamp-component-hra_depiction_3d_images.owl \
+		--assume-new=$(TMPDIR)/stamp-component-hra_skeleton.owl \
 		COMP=true IMP=false MIR=false PAT=true all_components
 
 .PHONY: recreate-%
@@ -565,6 +567,12 @@ $(COMPONENTSDIR)/hra_depiction_3d_images.owl: component-download-hra_depiction_3
 	fi
 .PRECIOUS: $(COMPONENTSDIR)/hra_depiction_3d_images.owl
 endif # MIR=true
+
+$(COMPONENTSDIR)/hra_skeleton.owl: $(TEMPLATEDIR)/hra-skeleton.template.tsv $(TMPDIR)/stamp-component-hra_skeleton.owl
+	$(ROBOT) template  \
+		 --template $(TEMPLATEDIR)/hra-skeleton.template.tsv \
+		 $(ANNOTATE_CONVERT_FILE)
+.PRECIOUS: $(COMPONENTSDIR)/hra_skeleton.owl
 
 endif # COMP=true
 # ----------------------------------------
