@@ -1,0 +1,22 @@
+{
+  "body": "Remove hasDbXref:DHBA:12869 from 'vestibular nerve' (UBERON:0003723)",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd87RUUER",
+      "author": {
+        "login": "dosumis"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent please fix this.",
+      "createdAt": "2025-11-10T13:48:48Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3625#issuecomment-3511763217",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "Edit vestibular nerve ABA xrefs",
+  "url": "https://github.com/obophenotype/uberon/issues/3625"
+}
