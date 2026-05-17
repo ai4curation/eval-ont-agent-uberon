@@ -1,0 +1,22 @@
+{
+  "body": "The attached table documents bone part terms requested by HuBMAP HRA.  These are amendable to adding via ROBOT template.\n\n[Uberon_skeleton_terms - Sheet1.csv](https://github.com/user-attachments/files/26137931/Uberon_skeleton_terms.-.Sheet1.csv)",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd870NgGu",
+      "author": {
+        "login": "dosumis"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "I have generated a ROBOT template via an agentic workflow to fix this ticket.",
+      "createdAt": "2026-03-20T10:47:22Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3678#issuecomment-4097180078",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "Add bone part terms from HubMap - HRA",
+  "url": "https://github.com/obophenotype/uberon/issues/3678"
+}
