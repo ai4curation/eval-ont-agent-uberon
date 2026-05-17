@@ -1,0 +1,37 @@
+{
+  "body": "**Preferred term label:**\ncarotid artery intima–media region\n\n**Synonyms**\ncarotid intima–media PMID:[39416432](https://pubmed.ncbi.nlm.nih.gov/39416432/)\n\n\n**Definition (free text, please give PubMed ID)**\nA region of the carotid artery wall composed of the tunica intima and tunica media.\n\n**Parent term (use https://www.ebi.ac.uk/ols/ontologies/uberon)**\n'[multi-tissue structure](http://purl.obolibrary.org/obo/UBERON_0000481)'\n'part of' some '[carotid artery segment](http://purl.obolibrary.org/obo/UBERON_0005396)'\n'has part' some '[tunica intima](http://purl.obolibrary.org/obo/UBERON_0002523)'\n'has part' some '[tunica media](http://purl.obolibrary.org/obo/UBERON_0002522)'\n\n**DisjointWith**\n'[tunica adventitia of blood vessel](http://purl.obolibrary.org/obo/UBERON_0005734)'\n\n**Your nano-attribution (ORCID)**\nhttps://orcid.org/0000-0001-6677-8489\n\n**Reason for addition**\nTerm needed for creating a term in OBA 'carotid intima-media thickness'\n\n\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd87Sgjf2",
+      "author": {
+        "login": "aleixpuigb"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent please, add this term. Disregard the part of 'reason for addition'.",
+      "createdAt": "2025-11-14T09:20:01Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3629#issuecomment-3531749366",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOAAidd87SgqQu",
+      "author": {
+        "login": "aleixpuigb"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent please add the term.",
+      "createdAt": "2025-11-14T09:25:47Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3629#issuecomment-3531777070",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "[NTR] carotid artery intima–media region",
+  "url": "https://github.com/obophenotype/uberon/issues/3629"
+}
