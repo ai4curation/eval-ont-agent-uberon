@@ -109,6 +109,10 @@ id: UBERON:0000476 ! acellular anatomical structure
 disjoint_from: CL:0000000 ! cell
 
 [Term]
+id: UBERON:0000468 ! multicellular organism
+disjoint_from: UBERON:0000463 ! organism substance
+
+[Term]
 id: UBERON:0005341 ! ventral commissure ! ventral commissure
 disjoint_from: FBbt:00001104  ! ventral nerve cord commissure
 
