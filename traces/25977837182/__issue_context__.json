@@ -1,0 +1,22 @@
+{
+  "body": "https://github.com/brain-bican/developing_human_brain_atlas_ontology/issues/11\n\nRemove hasDbXref:DHBA:12399 from 'cerebellum interpositus nucleus' (UBERON:0004073)\nRemove hasDbXref:DHBA:10669 from 'fourth ventricle' (UBERON:0002422)\nRemove hasDbXref:DHBA:12074 from 'olfactory tract' (UBERON:0002265)\nRemove hasDbXref:DHBA:12471 from 'pontine raphe nucleus' (UBERON:0002047)\nRemove hasDbXref:DHBA:10301 from 'subiculum' (UBERON:0002191)\n\n",
+  "comments": [
+    {
+      "id": "IC_kwDOAAidd87R5IIA",
+      "author": {
+        "login": "RiveraAndrea83"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "@dragon-ai-agent please fix this.",
+      "createdAt": "2025-11-12T11:14:45Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/obophenotype/uberon/issues/3627#issuecomment-3521413632",
+      "viewerDidAuthor": false
+    }
+  ],
+  "title": "Fix issue with inferred equivalences for uberon terms for BG",
+  "url": "https://github.com/obophenotype/uberon/issues/3627"
+}
